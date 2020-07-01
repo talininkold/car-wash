@@ -1,0 +1,50 @@
+.container {
+  max-width: 1100px;
+  height: 90%;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+
+.btn {
+  margin: 5px 0;
+  padding: 5px;
+  height: 2rem;
+  border: 0;
+  &-main {
+    background: $main-color;
+    color: $light-color;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 0.7rem;
+  width: 300px;
+  border-radius: 5px;
+  margin: 1rem auto;
+  opacity: 0.9;
+  color: #000;
+  animation: alert 3s forwards ease-out;
+  &-success {
+    background: $success-color;
+  }
+  &-danger {
+    background: $danger-color;
+  }
+}
+
+@keyframes alert {
+  from {
+    bottom: 20px;
+    opacity: 1;
+  }
+  to {
+    bottom: 60px;
+    opacity: 0;
+  }
+}

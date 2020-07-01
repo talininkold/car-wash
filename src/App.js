@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Navbar from './Сomponents/Layout/Navbar';
+import AuthState from './Сomponents/Context/authContext/AuthState'
+import PrivateRoute from './Сomponents/Pages/PrivateRoute'
+import PrivateRouteLogs from './Сomponents/Pages/PrivateRouteLogs'
+import FirstPage from './Сomponents/Pages/FirstPage'
+import Search from './Сomponents/Pages/Search'
+import Logs from './Сomponents/Pages/Logs'
+import Alert from './Сomponents/Layout/Alert';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthState>
+      <Router>
+      <div className="App">
+        <Navbar />
+        <Alert />
+        <div>
+          <Switch>
+            <PrivateRoute exact path="/search" component={Search}/>
+            <PrivateRouteLogs exact path="/logs" component={Logs}/>
+            <Route exact path="/" component={FirstPage}/>
+          </Switch>       
+        </div>
+      </div>
+      </Router>
+  </AuthState>
   );
 }
 
