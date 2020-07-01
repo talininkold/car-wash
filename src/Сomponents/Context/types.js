@@ -1,13 +1,13 @@
+export const SET_LOADING = 'SET_LOADING';
+export const FILTER_TICKETS = 'FILTER_TICKETS';
+export const СLEAR_FILTER = 'СLEAR_FILTER';
 // export const GET_ORDERS = 'GET_ORDERS';
 // export const CLEAR_ORDERS = 'CLEAR_ORDERS';
-// export const FILTER_ORDERS = 'FILTER_ORDERS';
 // export const CLEAR_ORDERS_FILTERS = 'CLEAR_ORDERS_FILTERS';
 // export const NAME_FILTER = 'NAME_FILTER';
 // export const PHONE_FILTER = 'PHONE_FILTER';
 // export const ID_FILTER = 'ID_FILTER';
 // export const ORDER_ID_FILTER = 'ORDER_ID_FILTER';
-// export const SET_LOADING = 'SET_LOADING';
-// export const СLEAR_FILTER = 'СLEAR_FILTER';
 // export const GET_COURIER = 'GET_COURIER';
 // export const COURIER_PHONE = 'COURIER_PHONE';
 // export const ADD_COURIER = 'ADD_COURIER';

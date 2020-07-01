@@ -8,10 +8,12 @@ import FirstPage from './Сomponents/Pages/FirstPage'
 import Search from './Сomponents/Pages/Search'
 import Logs from './Сomponents/Pages/Logs'
 import Alert from './Сomponents/Layout/Alert';
+import FilterState from './Сomponents/Context/FilterState';
 
 function App() {
   return (
-    <AuthState>
+  <AuthState>
+    <FilterState>
       <Router>
       <div className="App">
         <Navbar />
@@ -25,6 +27,7 @@ function App() {
         </div>
       </div>
       </Router>
+    </FilterState>
   </AuthState>
   );
 }

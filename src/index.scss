@@ -18,6 +18,9 @@ nav {
   color: $light-color;
   width: 100%;
   height: 6rem;
+  // position: sticky;
+  // top: 0;
+  // left: 0;
   
   div.container {
     display: flex;
@@ -125,12 +128,14 @@ nav {
   h4 {
     text-align: center;
   }
+}
 
-  input {
-    margin: 5px 0;
-    padding: 3px 10px;
-    height: 1.5rem;
+// TICKETS FILTER
+#ticket-filter {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  + button {
+    width: 300px;
   }
-
-
 }

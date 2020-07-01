@@ -5,6 +5,12 @@
   padding: 5px 10px;
 }
 
+input {
+  margin: 5px 0;
+  padding: 3px 10px;
+  height: 1.5rem;
+}
+
 .btn {
   margin: 5px 0;
   padding: 5px;
@@ -13,6 +19,10 @@
   &-main {
     background: $main-color;
     color: $light-color;
+  }
+  &-light {
+    background: $secondary-color;
+    color: #000;
   }
   &:hover {
     opacity: 0.8;
@@ -46,5 +56,26 @@
   to {
     bottom: 60px;
     opacity: 0;
+  }
+}
+
+.no-match {
+  padding: 15px;
+  background: $secondary-color;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  margin: 15px auto;
+  text-align: center;
+  border-collapse: collapse;
+  thead {
+    background: $header-color;
+  }
+  td, th {
+    border: 1px solid $header-color;
+    padding: 5px;
+    font-size: 0.7rem;
   }
 }
