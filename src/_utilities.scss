@@ -5,10 +5,20 @@
   padding: 5px 10px;
 }
 
+h4 {
+  margin-bottom: 5px;
+}
+
 input {
   margin: 5px 0;
   padding: 3px 10px;
   height: 1.5rem;
+}
+
+select {
+  margin: 5px 0;
+  padding: 3px 10px;
+  height: 2rem;
 }
 
 .btn {
@@ -22,6 +32,10 @@ input {
   }
   &-light {
     background: $secondary-color;
+    color: #000;
+  }
+  &-success {
+    background: $success-color;
     color: #000;
   }
   &:hover {

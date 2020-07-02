@@ -8,12 +8,13 @@ const OrdersFilters = () => {
   const authContext = useContext(AuthContext)
 
   const {key, login} = authContext
+  const {searchType} = filterContext
 
   const [param, setParam] = useState('');
 
   const onTicketFilter = (e) => {
     e.preventDefault()
-    filterContext.onTicketFilter(login, key, param)
+    filterContext.onTicketFilter(login, key, param, searchType)
     setParam('')
     console.log(param)
   }

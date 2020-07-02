@@ -1,6 +1,9 @@
 export const SET_LOADING = 'SET_LOADING';
 export const FILTER_TICKETS = 'FILTER_TICKETS';
 export const СLEAR_FILTER = 'СLEAR_FILTER';
+export const TYPE_FILTER = 'TYPE_FILTER';
+export const CLEAR_TYPE_FILTER = 'CLEAR_TYPE_FILTER';
+export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 // export const GET_ORDERS = 'GET_ORDERS';
 // export const CLEAR_ORDERS = 'CLEAR_ORDERS';
 // export const CLEAR_ORDERS_FILTERS = 'CLEAR_ORDERS_FILTERS';

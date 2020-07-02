@@ -131,6 +131,21 @@ nav {
 }
 
 // TICKETS FILTER
+div.form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+form.filters {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  + button {
+    width: 300px;
+  }
+}
+
 #ticket-filter {
   width: 300px;
   display: flex;
