@@ -7,7 +7,10 @@ import {
   СLEAR_FILTER,
   TYPE_FILTER,
   CLEAR_TYPE_FILTER,
-  SET_SEARCH_TYPE
+  SET_SEARCH_TYPE,
+  SET_IMG_URL,
+  GET_IMG,
+  CLEAR_IMG
 } from '../Context/types';
 
 const FilterState = props => {
@@ -15,7 +18,9 @@ const FilterState = props => {
     loading: false,
     searchType: 'ticket',
     tickets: [],
-    typeFiltered: null
+    typeFiltered: null,
+    urlParam: null,
+    url: null
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -43,6 +48,23 @@ const FilterState = props => {
     dispatch({type: SET_SEARCH_TYPE, payload: type})
   }
 
+  const getUrlParam = (url) => {
+    dispatch({type: SET_IMG_URL, payload: url})
+    console.log('get photo')
+  }
+
+  const getImg = async (login, key, param) => {
+    dispatch({type: SET_LOADING, payload: true})
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=getphotourl&cod=${param}`);
+    const data = await res.json();
+    dispatch({type: GET_IMG, payload: data.photoURL})
+    console.log(data.photoURL)
+  }
+
+  const clearImg = () => {
+    dispatch({type: CLEAR_IMG})
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -51,11 +73,16 @@ const FilterState = props => {
         searchType: state.searchType,
         tickets: state.tickets,
         typeFiltered: state.typeFiltered,
+        urlParam: state.urlParam,
+        url: state.url,
         onTicketFilter,
         clearFilter,
         typeFilter,
         setSearchType,
-        clearTypeFilter
+        clearTypeFilter,
+        getUrlParam,
+        getImg,
+        clearImg
       }}
     >
       {props.children}

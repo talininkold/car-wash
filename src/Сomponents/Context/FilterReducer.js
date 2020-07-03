@@ -4,7 +4,10 @@ import {
   СLEAR_FILTER,
   TYPE_FILTER,
   CLEAR_TYPE_FILTER,
-  SET_SEARCH_TYPE
+  SET_SEARCH_TYPE,
+  SET_IMG_URL,
+  GET_IMG,
+  CLEAR_IMG
 } from './types';
 
 export default (state, action) => {
@@ -18,6 +21,7 @@ export default (state, action) => {
       return {
         ...state,
         tickets: action.payload,
+        typeFiltered: null,
         loading: false
       }
     case TYPE_FILTER:
@@ -32,10 +36,28 @@ export default (state, action) => {
         tickets: [],
         typeFiltered: null
       }
+    case SET_IMG_URL:
+      return {
+        ...state,
+        urlParam: action.payload
+      }
+    case GET_IMG:
+      return {
+        ...state,
+        url: action.payload,
+        loading: false
+      }
+    case CLEAR_IMG:
+      return {
+        ...state,
+        url: null,
+        urlParam: null
+      }
     case СLEAR_FILTER:
       return {
         ...state,
         tickets: [],
+        typeFiltered: null,
         loading: false
       }
     case CLEAR_TYPE_FILTER:
@@ -43,6 +65,7 @@ export default (state, action) => {
       ...state,
       typeFiltered: null
     }
+
     default:
       return state;
   }

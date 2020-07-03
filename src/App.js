@@ -6,6 +6,7 @@ import PrivateRoute from './Сomponents/Pages/PrivateRoute'
 import PrivateRouteLogs from './Сomponents/Pages/PrivateRouteLogs'
 import FirstPage from './Сomponents/Pages/FirstPage'
 import Search from './Сomponents/Pages/Search'
+import Image from './Сomponents/Pages/Image'
 import Logs from './Сomponents/Pages/Logs'
 import Alert from './Сomponents/Layout/Alert';
 import FilterState from './Сomponents/Context/FilterState';
@@ -21,6 +22,7 @@ function App() {
         <div>
           <Switch>
             <PrivateRoute exact path="/search" component={Search}/>
+            <PrivateRoute exact path="/image" component={Image}/>
             <PrivateRouteLogs exact path="/logs" component={Logs}/>
             <Route exact path="/" component={FirstPage}/>
           </Switch>       

@@ -10,10 +10,17 @@ const Search = () => {
 
   const filterContext = useContext(FilterContext)
   const {loading, tickets, searchType} = filterContext;
+
+  const setSearchType = (e) => {
+    filterContext.setSearchType(e.target.value)
+    document.getElementById('ticket-filter').style.display = 'flex'
+    document.getElementById('comment').style.display = 'none'
+  }
+
   return (
     <div className="container">
       <h4>Поиск по</h4>
-      <select className="browser-default" onChange={e => {filterContext.setSearchType(e.target.value)}} name="filter" defaultValue="ticket">
+      <select className="browser-default" onChange={setSearchType} id="search-type" defaultValue="ticket">
           <option value="ticket">Билетам</option>
           <option value="report">Отчетам</option>
       </select>

@@ -15,17 +15,22 @@ const OrdersFilters = () => {
   const onTicketFilter = (e) => {
     e.preventDefault()
     filterContext.onTicketFilter(login, key, param, searchType)
-    setParam('')
+    document.getElementById('ticket-filter').style.display = 'none'
+    document.getElementById('comment').style.display = 'block'
+    // setParam('')
     console.log(param)
   }
 
   const clearFilter = () => {
     setParam('')
+    document.getElementById('ticket-filter').style.display = 'flex'
+    document.getElementById('comment').style.display = 'none'
     console.log('cleared')
     filterContext.clearFilter()
   }
   return (
     <div>
+      <p id="comment" style={{display: 'none'}}>Показан поиск по параметру: <br></br> {param}</p>
       <form id="ticket-filter" onSubmit={onTicketFilter}>
         <p>Телефон или номер машины</p>
         <input 
@@ -46,7 +51,7 @@ const OrdersFilters = () => {
       <button 
           className="btn btn-light" 
           onClick={clearFilter}>
-          Отменить
+          Cбросить
       </button>
     </div>
   )
