@@ -30,6 +30,7 @@ const Navbar = () => {
           <ul>
             <li><Link to="search">Поиск</Link></li>
             {user === 'admin' && <li><Link to="logs">Логи</Link></li>}
+            {user === 'admin' && <li><Link to="edit">Редактировать</Link></li>}
           </ul>}
           {isAuthenticated && <a type="button" href='' onClick={() => {authContext.logOut(); 
               // filterContext.clearAll()

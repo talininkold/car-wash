@@ -7,22 +7,9 @@ export const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 export const SET_IMG_URL = 'SET_IMG_URL';
 export const GET_IMG = 'GET_IMG';
 export const CLEAR_IMG = 'CLEAR_IMG';
-// export const GET_ORDERS = 'GET_ORDERS';
-// export const CLEAR_ORDERS = 'CLEAR_ORDERS';
-// export const CLEAR_ORDERS_FILTERS = 'CLEAR_ORDERS_FILTERS';
-// export const NAME_FILTER = 'NAME_FILTER';
-// export const PHONE_FILTER = 'PHONE_FILTER';
-// export const ID_FILTER = 'ID_FILTER';
-// export const ORDER_ID_FILTER = 'ORDER_ID_FILTER';
-// export const GET_COURIER = 'GET_COURIER';
-// export const COURIER_PHONE = 'COURIER_PHONE';
-// export const ADD_COURIER = 'ADD_COURIER';
-// export const DELETE_COURIER = 'DELETE_COURIER';
-// export const GET_ARCHIVE = 'GET_ARCHIVE';
-// export const FILTER_ARCHIVE = 'FILTER_ARCHIVE';
-// export const CLEAR_ARCHIVE = 'CLEAR_ARCHIVE';
-// export const CLEAR_ARCHIVE_FILTER = 'CLEAR_ARCHIVE_FILTER';
-// export const CLEAR_ALL = 'CLEAR_ALL';
+export const ON_CHECK = 'ON_CHECK';
+export const SET_ERROR = 'SET_ERROR';
+
 
 // auth context
 export const LOGIN_USER = 'LOGIN_USER';

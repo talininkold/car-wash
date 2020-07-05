@@ -7,7 +7,9 @@ import {
   SET_SEARCH_TYPE,
   SET_IMG_URL,
   GET_IMG,
-  CLEAR_IMG
+  CLEAR_IMG,
+  ON_CHECK,
+  SET_ERROR
 } from './types';
 
 export default (state, action) => {
@@ -15,7 +17,8 @@ export default (state, action) => {
     case SET_LOADING:
       return {
         ...state,
-        loading: action.payload
+        loading: action.payload,
+        error: null
       }
     case FILTER_TICKETS:
       return {
@@ -64,6 +67,17 @@ export default (state, action) => {
       return {
       ...state,
       typeFiltered: null
+    }
+    case SET_ERROR:
+      return {
+      ...state,
+      error: action.payload,
+      loading: false
+    }
+    case ON_CHECK:
+      return {
+      ...state,
+      response: action.payload 
     }
 
     default:

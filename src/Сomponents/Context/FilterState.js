@@ -10,7 +10,9 @@ import {
   SET_SEARCH_TYPE,
   SET_IMG_URL,
   GET_IMG,
-  CLEAR_IMG
+  CLEAR_IMG,
+  ON_CHECK,
+  SET_ERROR
 } from '../Context/types';
 
 const FilterState = props => {
@@ -20,7 +22,9 @@ const FilterState = props => {
     tickets: [],
     typeFiltered: null,
     urlParam: null,
-    url: null
+    url: null,
+    error: null,
+    response: null
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -65,6 +69,32 @@ const FilterState = props => {
     dispatch({type: CLEAR_IMG})
   }
 
+  const onCheck = async (login, key, code, value) => {
+    try {
+      dispatch({type: SET_LOADING, payload: true})
+      const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=replacenumber&cod=${code}&param=${value}`);
+      const data = await res.json();
+      const {number, replaceNumber} = data;
+      dispatch({type: ON_CHECK, payload: {number, replaceNumber}})
+      const isTrue = window.confirm(`Вы хотите заменить\n ${number} на ${replaceNumber}`)
+      if (isTrue) {
+        const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=replaceset&cod=${code}&param=${value}`);
+        const data = await res.json();
+        if (data.status === true) {
+          alert('Заменено')
+          dispatch({type: SET_LOADING, payload: false})
+        } else {
+          dispatch({type: SET_ERROR, payload: 'Ошибка сервера, попробуйте позже'})
+        }
+      } else {
+        alert('Отмена')
+      }
+    } catch (error) {
+      dispatch({type: SET_ERROR, payload: 'Введен неправильный код'})
+      console.log(error)
+    }
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -75,6 +105,8 @@ const FilterState = props => {
         typeFiltered: state.typeFiltered,
         urlParam: state.urlParam,
         url: state.url,
+        error: state.error,
+        response: state.response,
         onTicketFilter,
         clearFilter,
         typeFilter,
@@ -82,7 +114,8 @@ const FilterState = props => {
         clearTypeFilter,
         getUrlParam,
         getImg,
-        clearImg
+        clearImg,
+        onCheck
       }}
     >
       {props.children}

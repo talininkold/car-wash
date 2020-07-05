@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import TicketFilter from '../Layout/TicketFilter';
 import FilterContext from '../Context/filterContext'
 import Spinner from '../Layout/Spinner2'
@@ -9,7 +9,13 @@ const Search = () => {
   // const [searchtype, setSearchtype] = useState('')
 
   const filterContext = useContext(FilterContext)
-  const {loading, tickets, searchType} = filterContext;
+  const {loading, tickets, searchType, response} = filterContext;
+
+  useEffect(() => {
+    if (response !== null) {
+      filterContext.clearFilter()
+    }
+  }, [response])
 
   const setSearchType = (e) => {
     filterContext.setSearchType(e.target.value)
