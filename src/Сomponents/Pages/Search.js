@@ -30,7 +30,6 @@ const Search = () => {
         className="browser-default" 
         onChange={setSearchType} 
         id="search-type" 
-        defaultValue="ticket" 
         value={searchType}>
           <option value="ticket">Билетам</option>
           <option value="report">Отчетам</option>

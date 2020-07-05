@@ -64,7 +64,7 @@ const Search = () => {
             <button 
               className="btn btn-main" 
               type="submit">
-              Поиск
+              Обновить
             </button>
           </form>
             <button 

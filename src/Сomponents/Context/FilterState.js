@@ -70,29 +70,29 @@ const FilterState = props => {
   }
 
   const onCheck = async (login, key, code, value) => {
-    try {
       dispatch({type: SET_LOADING, payload: true})
       const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=replacenumber&cod=${code}&param=${value}`);
       const data = await res.json();
-      const {number, replaceNumber} = data;
-      dispatch({type: ON_CHECK, payload: {number, replaceNumber}})
-      const isTrue = window.confirm(`Вы хотите заменить\n ${number} на ${replaceNumber}`)
-      if (isTrue) {
-        const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=replaceset&cod=${code}&param=${value}`);
-        const data = await res.json();
-        if (data.status === true) {
-          alert('Заменено')
-          dispatch({type: SET_LOADING, payload: false})
-        } else {
-          dispatch({type: SET_ERROR, payload: 'Ошибка сервера, попробуйте позже'})
-        }
+      if (data.status === 'Error') {
+        dispatch({type: SET_ERROR, payload: 'Введен неверный код'})
       } else {
-        alert('Отмена')
+        const {number, replaceNumber} = data;
+        dispatch({type: ON_CHECK, payload: {number, replaceNumber}})
+        const isTrue = window.confirm(`Вы хотите заменить\n ${number} на ${replaceNumber} ?`)
+        if (isTrue) {
+          const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=replaceset&cod=${code}&param=${value}`);
+          const data = await res.json();
+          if (data.status === true) {
+            alert('Номер успешно обновлен.')
+            dispatch({type: SET_LOADING, payload: false})
+          } else {
+            dispatch({type: SET_ERROR, payload: 'Ошибка сервера, попробуйте позже'})
+          }
+        } else {
+          dispatch({type: SET_LOADING, payload: false})
+          alert('Отмена')
+        }   
       }
-    } catch (error) {
-      dispatch({type: SET_ERROR, payload: 'Введен неправильный код'})
-      console.log(error)
-    }
   }
 
   return (
