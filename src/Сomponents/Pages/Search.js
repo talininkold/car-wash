@@ -26,7 +26,12 @@ const Search = () => {
   return (
     <div className="container">
       <h4>Поиск по</h4>
-      <select className="browser-default" onChange={setSearchType} id="search-type" defaultValue="ticket">
+      <select 
+        className="browser-default" 
+        onChange={setSearchType} 
+        id="search-type" 
+        defaultValue="ticket" 
+        value={searchType}>
           <option value="ticket">Билетам</option>
           <option value="report">Отчетам</option>
       </select>
