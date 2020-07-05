@@ -10,7 +10,9 @@ const Table = () => {
   const tbody = tickets.filter((item, index) => index > 0 && item)
 
   const  getParam = (e) => {
-    getUrlParam(e.target.parentElement.parentElement.firstChild.innerText)
+    const code = e.target.parentElement.parentElement.firstChild.innerText
+    const number = e.target.parentElement.parentElement.children[1].innerText
+    getUrlParam({url: code, number})
   }
 
   return (

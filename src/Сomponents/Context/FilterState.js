@@ -52,8 +52,8 @@ const FilterState = props => {
     dispatch({type: SET_SEARCH_TYPE, payload: type})
   }
 
-  const getUrlParam = (url) => {
-    dispatch({type: SET_IMG_URL, payload: url})
+  const getUrlParam = (arr) => {
+    dispatch({type: SET_IMG_URL, payload: arr})
     console.log('get photo')
   }
 

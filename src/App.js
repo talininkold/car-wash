@@ -24,8 +24,8 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/search" component={Search}/>
             <PrivateRoute exact path="/image" component={Image}/>
+            <PrivateRoute exact path="/edit" component={Edit}/>
             <PrivateRouteLogs exact path="/logs" component={Logs}/>
-            <PrivateRouteLogs exact path="/edit" component={Edit}/>
             <Route exact path="/" component={FirstPage}/>
           </Switch>       
         </div>

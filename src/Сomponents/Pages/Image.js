@@ -12,8 +12,8 @@ const Image = () => {
   const {urlParam, getImg, url, loading, clearImg} = filterContext;
 
   useEffect(() => {
-    if (urlParam) {
-      getImg(login, key, urlParam)
+    if (urlParam.url) {
+      getImg(login, key, urlParam.url)
     }
   }, [])
 
@@ -26,7 +26,7 @@ const Image = () => {
       {loading ? 
       <Spinner /> : 
       (<div id="img">
-        <p>Показано фото заказа {urlParam}</p>
+        <p>Показано фото заказа {urlParam.url} c номером {urlParam.number}</p>
         <img src={url}/>
         <Link to="/search" onClick={clearURL} className="btn btn-light">Назад</Link>
       </div>)}

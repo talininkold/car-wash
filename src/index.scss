@@ -25,8 +25,13 @@ nav {
   div.container {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+
+    #menu {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
 
     .logo {
       display: flex;
@@ -42,9 +47,11 @@ nav {
         list-style: none;
         display: flex;
         flex-direction: row;
+        padding: 0;
+        margin-right: 50px;
       }
       a {
-        display: block;
+        display: inline-block;
         padding: 15px;
         text-decoration: none;
         color: $light-color;
@@ -171,3 +178,118 @@ form.filters {
   }
 }
 
+@media(max-width: 768px) {
+  nav {
+
+    height: auto;
+    width: 100%;
+    
+    div.container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .logo {
+        max-width: 10px auto !important;
+      }
+
+        #menu {
+          display: flex;
+          flex-direction: row;
+        }
+
+        h3 {
+          margin: 5px auto;
+        }
+  
+        ul {
+          margin: 0;
+          padding: 5px;
+          list-style: none;
+          display: flex;
+          flex-direction: row;
+          margin-right: 60px;
+        }
+        a {
+          display: block;
+          padding: 15px;
+        }
+    }
+  
+  }
+  div.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.5rem;
+  }
+  form.filters {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    + button {
+      width: 200px;
+    }
+  }
+  
+  #ticket-filter {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    + button {
+      width: 200px;
+    }
+  }
+}
+
+@media(max-width: 470px) {
+  nav {
+
+    height: auto;
+    width: 100%;
+    
+    div.container {
+
+        width: 370px;
+        padding: 0;
+
+        #menu {
+          display: flex;
+          flex-direction: column;
+        }
+  
+        ul {
+          margin: 0;
+          padding: 5px;
+          margin-right: 0px;
+
+          a {
+            padding: 7px;
+          }
+        }
+    }
+  
+  }
+  div.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.5rem;
+  }
+  form.filters {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    + button {
+      width: 150px;
+    }
+  }
+  
+  #ticket-filter {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    + button {
+      width: 150px;
+    }
+  }
+}

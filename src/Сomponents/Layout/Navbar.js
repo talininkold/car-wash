@@ -26,15 +26,17 @@ const Navbar = () => {
             <i className="fas fa-car fa-2x"></i>
             <h3>АДМИНКА ДЛЯ МОЙКИ</h3>
           </div>
-          {isAuthenticated && 
-          <ul>
-            <li><Link to="search">Поиск</Link></li>
-            {user === 'admin' && <li><Link to="logs">Логи</Link></li>}
-            {user === 'admin' && <li><Link to="edit">Редактировать</Link></li>}
-          </ul>}
-          {isAuthenticated && <a type="button" href='' onClick={() => {authContext.logOut(); 
-              // filterContext.clearAll()
-          }}>Выйти</a>}
+          <div id="menu">
+            {isAuthenticated && 
+            <ul>
+              <li><Link to="search">Поиск</Link></li>
+              <li><Link to="edit">Редактировать</Link></li>
+              {user === 'admin' && <li><Link to="logs">Логи</Link></li>}
+            </ul>}
+            {isAuthenticated && <a type="button" href='' onClick={() => {authContext.logOut(); 
+                // filterContext.clearAll()
+            }}>Выйти</a>}
+          </div>
         </div>
       </nav>
   )
