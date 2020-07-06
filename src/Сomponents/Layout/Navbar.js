@@ -2,22 +2,26 @@ import React, {useContext, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 // import FilterContext from '../Context/filterContext'
 import AuthContext from '../Context/authContext/authContext'
+import FilterContext from '../Context/filterContext'
 
 const Navbar = () => {
 
   // const filterContext = useContext(FilterContext)
   const authContext = useContext(AuthContext)
+  const filterContext = useContext(FilterContext)
 
   const {isAuthenticated, user} = authContext;
+  const {response} = filterContext;
 
   useEffect(() => {
     if (localStorage.login) {
       authContext.loadUser()
-      // filterContext.getOrders()
-      // filterContext.getCouriers()
+    }
+    if (response !== null) {
+      filterContext.clearFilter()
     }
     // eslint-disable-next-line
-  }, [localStorage.user, localStorage.param, localStorage.login])
+  }, [localStorage.user, localStorage.param, localStorage.login, response])
 
   return (
       <nav>

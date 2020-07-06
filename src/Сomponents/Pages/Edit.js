@@ -19,12 +19,17 @@ const Search = () => {
     if (!loading) {
       setValue('')
       setCode('')
+      document.querySelector('.reset').style.display = "block"
+      document.querySelector('.refresh').style.display = "block"
     }
   }, [loading])
 
   const onSubmit = (e) => {
     e.preventDefault()
     filterContext.onCheck(login, key, code, value)
+    document.querySelector('.reset').style.display = "none"
+    document.querySelector('.refresh').style.display = "none"
+
     console.log('sumnitted', code, value)
   }
   const onClear = () => {
@@ -62,13 +67,13 @@ const Search = () => {
             required
             />
             <button 
-              className="btn btn-main" 
+              className="btn btn-main refresh" 
               type="submit">
               Обновить
             </button>
           </form>
             <button 
-                className="btn btn-light" 
+                className="btn btn-light reset" 
                 onClick={onClear}>
                 Cбросить
             </button>
