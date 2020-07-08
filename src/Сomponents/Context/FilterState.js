@@ -12,7 +12,10 @@ import {
   GET_IMG,
   CLEAR_IMG,
   ON_CHECK,
-  SET_ERROR
+  SET_ERROR,
+  GET_LOGS,
+  LOGS_FILTER,
+  REFRESH_LOGS
 } from '../Context/types';
 
 const FilterState = props => {
@@ -24,7 +27,9 @@ const FilterState = props => {
     urlParam: null,
     url: null,
     error: null,
-    response: null
+    response: null,
+    logs: [],
+    logsFiltered: null
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -95,6 +100,23 @@ const FilterState = props => {
       }
   }
 
+  const getLogs = async (login, key) => {
+    dispatch({type: SET_LOADING, payload: true})
+    if (login && key) {
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=logs`);
+    const data = await res.json();
+    dispatch({type: GET_LOGS, payload: data.arr})
+    }
+  }
+  const logsFilter = (param) => {
+    dispatch({type: LOGS_FILTER, payload: param})
+  }
+
+  // const refreshLogs = () => {
+  //   dispatch({type: REFRESH_LOGS})
+  //   getLogs()
+  // }
+
   return (
     <FilterContext.Provider
       value={{
@@ -107,6 +129,8 @@ const FilterState = props => {
         url: state.url,
         error: state.error,
         response: state.response,
+        logs: state.logs,
+        logsFiltered: state.logsFiltered,
         onTicketFilter,
         clearFilter,
         typeFilter,
@@ -115,7 +139,9 @@ const FilterState = props => {
         getUrlParam,
         getImg,
         clearImg,
-        onCheck
+        onCheck,
+        getLogs,
+        logsFilter
       }}
     >
       {props.children}

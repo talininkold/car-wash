@@ -293,3 +293,13 @@ form.filters {
     }
   }
 }
+
+.refresh {
+  color: $main-color;
+  cursor: pointer;
+  transition: transform 1s;
+  &:hover {
+    color: $success-color;
+    transform: rotate(360deg);
+  }
+}

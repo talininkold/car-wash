@@ -9,7 +9,10 @@ import {
   GET_IMG,
   CLEAR_IMG,
   ON_CHECK,
-  SET_ERROR
+  SET_ERROR,
+  GET_LOGS,
+  LOGS_FILTER,
+  // REFRESH_LOGS
 } from './types';
 
 export default (state, action) => {
@@ -79,7 +82,18 @@ export default (state, action) => {
       ...state,
       response: action.payload 
     }
-
+    case GET_LOGS:
+      return {
+        ...state,
+        logs: action.payload,
+        loading: false,
+        logsFiltered: null
+      }
+    case LOGS_FILTER:
+      return {
+        ...state,
+        logsFiltered: state.logs.filter(item => item[1] === action.payload)
+      }
     default:
       return state;
   }

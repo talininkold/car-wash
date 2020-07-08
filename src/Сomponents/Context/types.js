@@ -9,6 +9,9 @@ export const GET_IMG = 'GET_IMG';
 export const CLEAR_IMG = 'CLEAR_IMG';
 export const ON_CHECK = 'ON_CHECK';
 export const SET_ERROR = 'SET_ERROR';
+export const GET_LOGS = 'GET_LOGS';
+export const LOGS_FILTER = 'LOGS_FILTER';
+export const REFRESH_LOGS = 'REFRESH_LOGS';
 
 
 // auth context

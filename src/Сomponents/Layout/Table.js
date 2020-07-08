@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const Table = () => {
   const filterContext = useContext(FilterContext)
   const {tickets, typeFiltered, searchType, getUrlParam} = filterContext;
-  console.log(tickets)
   const header = tickets[0]
   const tbody = tickets.filter((item, index) => index > 0 && item)
   console.log(header, tbody)
