@@ -38,7 +38,7 @@ const Logs = () => {
             <option value="replace number request">replace number request</option>
             <option value="replace number set">replace number set</option>
         </select>
-        {value !== '' && <i className="fas fa-times fa-2x" id="reset" onClick={reset}></i>}
+        {value !== '' && <i className="fas fa-times fa-2x" id="reset-logs" onClick={reset}></i>}
           <table>
             <thead>
               <tr id="header">
