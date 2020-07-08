@@ -5,7 +5,7 @@ import Spinner from './../Layout/Spinner2'
 
 const Logs = () => {
   const [value, setValue] = useState('')
-  const {getLogs, logs, loading, logsFilter, logsFiltered, refreshLogs} = useContext(FilterContext)
+  const {getLogs, logs, loading, logsFilter, logsFiltered, resetFilter} = useContext(FilterContext)
   const {login, key} = useContext(AuthContext)
 
   useEffect(() => {
@@ -15,10 +15,14 @@ const Logs = () => {
 
     const header = logs[0]
     const tbody = logs.filter((item, index) => index > 0 && item)
-    console.log(header, tbody)
 
     const refresh = () => {
       getLogs(login, key)
+    }
+    
+    const reset = () => {
+      setValue('')
+      resetFilter()
     }
     
   return (
@@ -34,6 +38,7 @@ const Logs = () => {
             <option value="replace number request">replace number request</option>
             <option value="replace number set">replace number set</option>
         </select>
+        {value !== '' && <i className="fas fa-times fa-2x" id="reset" onClick={reset}></i>}
           <table>
             <thead>
               <tr id="header">

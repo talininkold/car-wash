@@ -12,6 +12,7 @@ export const SET_ERROR = 'SET_ERROR';
 export const GET_LOGS = 'GET_LOGS';
 export const LOGS_FILTER = 'LOGS_FILTER';
 export const REFRESH_LOGS = 'REFRESH_LOGS';
+export const RESET_FILTER = 'RESET_FILTER';
 
 
 // auth context

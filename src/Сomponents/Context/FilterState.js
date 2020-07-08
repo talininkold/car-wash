@@ -15,7 +15,7 @@ import {
   SET_ERROR,
   GET_LOGS,
   LOGS_FILTER,
-  REFRESH_LOGS
+  RESET_FILTER
 } from '../Context/types';
 
 const FilterState = props => {
@@ -112,10 +112,9 @@ const FilterState = props => {
     dispatch({type: LOGS_FILTER, payload: param})
   }
 
-  // const refreshLogs = () => {
-  //   dispatch({type: REFRESH_LOGS})
-  //   getLogs()
-  // }
+  const resetFilter = () => {
+    dispatch({type: RESET_FILTER})
+  }
 
   return (
     <FilterContext.Provider
@@ -141,7 +140,8 @@ const FilterState = props => {
         clearImg,
         onCheck,
         getLogs,
-        logsFilter
+        logsFilter,
+        resetFilter
       }}
     >
       {props.children}

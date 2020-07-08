@@ -12,6 +12,7 @@ import {
   SET_ERROR,
   GET_LOGS,
   LOGS_FILTER,
+  RESET_FILTER
   // REFRESH_LOGS
 } from './types';
 
@@ -93,6 +94,11 @@ export default (state, action) => {
       return {
         ...state,
         logsFiltered: state.logs.filter(item => item[1] === action.payload)
+      }
+    case RESET_FILTER:
+      return {
+        ...state,
+        logsFiltered: null
       }
     default:
       return state;

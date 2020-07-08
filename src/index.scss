@@ -303,3 +303,14 @@ form.filters {
     transform: rotate(360deg);
   }
 }
+#reset {
+  display: inline-block;
+  margin-left: 20px;
+  color: $danger-color;
+  cursor: pointer;
+  transition: transform 1s;
+  &:hover {
+    color: $main-color;
+    transform: rotate(360deg);
+  }
+}
