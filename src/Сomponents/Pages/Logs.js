@@ -27,7 +27,7 @@ const Logs = () => {
     
   return (
     <div className="container">
-      <h4>Логирование <i className="fas fa-sync-alt refresh" onClick={refresh}></i></h4>
+      <h4>Логирование <i className="fas fa-sync-alt refresh-logs" onClick={refresh}></i></h4>
       {loading ? <Spinner /> :
       <Fragment>
         <select className="browser-default" onChange={e => {setValue(e.target.value); logsFilter(e.target.value)}} name="filter" value={value}>
