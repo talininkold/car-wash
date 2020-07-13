@@ -12,7 +12,9 @@ import {
   SET_ERROR,
   GET_LOGS,
   LOGS_FILTER,
-  RESET_FILTER
+  RESET_FILTER,
+  GET_ARCHIVE,
+  CLEAR_ARCHIVE
   // REFRESH_LOGS
 } from './types';
 
@@ -99,6 +101,16 @@ export default (state, action) => {
       return {
         ...state,
         logsFiltered: null
+      }
+    case GET_ARCHIVE:
+      return {
+        ...state,
+        archive: action.payload
+      }
+    case CLEAR_ARCHIVE:
+      return {
+        ...state,
+        archive: null
       }
     default:
       return state;

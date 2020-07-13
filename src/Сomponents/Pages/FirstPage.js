@@ -4,12 +4,20 @@ import Login from '../Layout/Login'
 import { Redirect } from 'react-router-dom'
 
 const FirstPage = () => {
-  const authContext = useContext(AuthContext)
+  const {isAuthenticated, user, login} = useContext(AuthContext)
   return (
     <Fragment>
-      {authContext.isAuthenticated ? <Redirect to='/search'/> : <Login/> }
+      {/* {isAuthenticated ? <Redirect to='/archive'/> : <Login/> } */}
+      {isAuthenticated 
+      ? 
+      <Fragment>
+        <Redirect to='/'/> 
+        <div className="container">
+          <p>Добрый день{user === 'washing' ? '!' : `, ${login}!`}</p>
+        </div>
+      </Fragment>
+      : <Login/> }
     </Fragment>
-    
   )
 }
 

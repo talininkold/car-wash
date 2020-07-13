@@ -178,6 +178,25 @@ form.filters {
   }
 }
 
+#archive {
+  form {
+    margin: 0;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  h4 {
+    text-align: center;
+  }
+  #archive-table {
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+}
+}
+
+
 @media(max-width: 768px) {
   nav {
 

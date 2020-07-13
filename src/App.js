@@ -11,6 +11,7 @@ import Logs from './Сomponents/Pages/Logs'
 import Edit from './Сomponents/Pages/Edit'
 import Alert from './Сomponents/Layout/Alert';
 import FilterState from './Сomponents/Context/FilterState';
+import Archive from './Сomponents/Pages/Archive';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
             <PrivateRoute exact path="/search" component={Search}/>
             <PrivateRoute exact path="/image" component={Image}/>
             <PrivateRoute exact path="/edit" component={Edit}/>
-            <PrivateRouteLogs exact path="/logs" component={Logs}/>
+            <PrivateRouteLogs exact path="/logs" component={Logs} type="admin"/>
+            <PrivateRouteLogs exact path="/archive" component={Archive} type="washing"/>
             <Route exact path="/" component={FirstPage}/>
           </Switch>       
         </div>

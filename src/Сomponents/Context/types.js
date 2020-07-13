@@ -13,6 +13,8 @@ export const GET_LOGS = 'GET_LOGS';
 export const LOGS_FILTER = 'LOGS_FILTER';
 export const REFRESH_LOGS = 'REFRESH_LOGS';
 export const RESET_FILTER = 'RESET_FILTER';
+export const GET_ARCHIVE = 'GET_ARCHIVE';
+export const CLEAR_ARCHIVE = 'CLEAR_ARCHIVE';
 
 
 // auth context

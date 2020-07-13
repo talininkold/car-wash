@@ -31,16 +31,16 @@ const AuthState = props => {
     const data = await res.json();
     const user = data.userType[0] 
     const key = data.key[0]
-    if (user === 'admin' || user === 'operator') {
+    if (user === 'Bad login or passwor') {
+      console.log('ошибка входа')
+      setAlert('Неверные данные', 'danger')
+      dispatch({type: LOGIN_ERROR})
+    } else {
       if (data.login) {
         dispatch({type: LOGIN_USER, payload: {user, key, login: data.login[0]}})
         setAlert('Вы успешно вошли', 'success')
         console.log('вы успешно вошли')
       }
-    } else {
-      console.log('ошибка входа')
-      setAlert('Неверные данные', 'danger')
-      dispatch({type: LOGIN_ERROR})
     }
   }
 

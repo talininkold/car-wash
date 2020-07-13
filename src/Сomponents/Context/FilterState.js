@@ -15,7 +15,9 @@ import {
   SET_ERROR,
   GET_LOGS,
   LOGS_FILTER,
-  RESET_FILTER
+  RESET_FILTER,
+  GET_ARCHIVE,
+  CLEAR_ARCHIVE
 } from '../Context/types';
 
 const FilterState = props => {
@@ -29,7 +31,8 @@ const FilterState = props => {
     error: null,
     response: null,
     logs: [],
-    logsFiltered: null
+    logsFiltered: null,
+    archive: null
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -116,6 +119,28 @@ const FilterState = props => {
     dispatch({type: RESET_FILTER})
   }
 
+  const getArchive = async (login, key, d1, d2) => {
+    dispatch({type: SET_LOADING, payload: true})
+    const d2End = d2 + 86340000;
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=archive&date1=${((d1-d2End) > 0) ? d2End : d1}&date2=${((d1-d2End) > 0) ? d1 : d2End}`)
+    const data = await res.json();
+     data.arr.map(item => {
+      if (item[3] === null) {
+        return item
+      } else {
+      const new3 = item[3].split(',').join(',\n').split('\n')
+      item[3] = new3
+      return item
+      }
+    })
+    dispatch({type: GET_ARCHIVE, payload: data.arr})
+    console.log('archive is here')
+    dispatch({type: SET_LOADING, payload: false})
+  }
+  const clearArchive = () => {
+    dispatch({type: CLEAR_ARCHIVE})
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -130,6 +155,7 @@ const FilterState = props => {
         response: state.response,
         logs: state.logs,
         logsFiltered: state.logsFiltered,
+        archive: state.archive,
         onTicketFilter,
         clearFilter,
         typeFilter,
@@ -141,7 +167,9 @@ const FilterState = props => {
         onCheck,
         getLogs,
         logsFilter,
-        resetFilter
+        resetFilter,
+        getArchive,
+        clearArchive
       }}
     >
       {props.children}

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useEffect, Fragment} from 'react'
 import {Link} from 'react-router-dom'
 // import FilterContext from '../Context/filterContext'
 import AuthContext from '../Context/authContext/authContext'
@@ -28,14 +28,20 @@ const Navbar = () => {
         <div className="container">
           <div className="logo">
             <i className="fas fa-car fa-2x"></i>
-            <h3>АДМИНКА ДЛЯ МОЙКИ</h3>
+            <h3>{user === 'washing' ? 'Мойка' : 'АДМИНКА ДЛЯ МОЙКИ'}</h3>
           </div>
           <div id="menu">
             {isAuthenticated && 
             <ul>
-              <li><Link to="search">Поиск</Link></li>
-              <li><Link to="edit">Редактировать</Link></li>
-              {user === 'admin' && <li><Link to="logs">Логи</Link></li>}
+              {user === 'washing' ? 
+              <li><Link to="archive">Архив</Link></li>
+              :
+              <Fragment>
+                <li><Link to="search">Поиск</Link></li>
+                <li><Link to="edit">Редактировать</Link></li>
+                {user === 'admin' && <li><Link to="logs">Логи</Link></li>} 
+              </Fragment>
+              }
             </ul>}
             {isAuthenticated && <a type="button" href='' onClick={() => {authContext.logOut(); 
                 // filterContext.clearAll()
