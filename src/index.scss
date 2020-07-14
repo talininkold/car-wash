@@ -188,12 +188,17 @@ form.filters {
   h4 {
     text-align: center;
   }
-  #archive-table {
-    p {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
 }
+
+#archive-table {
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  tr:nth-child(1) {
+    font-weight: bold;
+    background: $header-color;
+  }
 }
 
 
@@ -331,5 +336,17 @@ form.filters {
   &:hover {
     color: $main-color;
     transform: rotate(360deg);
+  }
+}
+
+#archive-download {
+  cursor: pointer;
+  position: fixed;
+  border-radius: 50px;
+  color: $main-color;
+  bottom: 30px;
+  left: 30px;
+  &:hover {
+    color: $hover-color;
   }
 }

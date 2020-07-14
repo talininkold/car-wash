@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react'
 import FilterContext from '../Context/filterContext'
 import AuthContext from '../Context/authContext/authContext'
 import Spinner from '../Layout/Spinner2'
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 const Archive = () => {
 
@@ -30,13 +32,51 @@ const Archive = () => {
     setDate1('')
     setDate2('')
   }
+  const onDownload = () => {
+      const wb = XLSX.utils.book_new();
+            wb.Props = {
+                    Title: "Archive",
+                    Author: 'washing'
+            };
+          wb.SheetNames.push("Test Sheet");
+          function forExcel(arr) {
+            const arrCopy = JSON.parse(JSON.stringify(arr));
+            for (let i = 0; i < arrCopy.length; i++) {
+              if (arrCopy[i][3] !== null) {
+                let newItem = arrCopy[i][3].join(' ')
+                arrCopy[i][3] = newItem
+              } else {
+                arrCopy[i][3] = '-'
+              }
+            }
+            return arrCopy;
+          }
+  
+        const arr = filterContext.archive;
+        const x = forExcel(arr)
+        console.log(x)
+  
+        const ws_data = x;
+        const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            wb.Sheets["Test Sheet"] = ws;
+        const wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+        function s2ab(s) {
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for (var i=0; i<s.length; i++) {
+            view[i] = s.charCodeAt(i) & 0xFF
+          }
+          return buf;
+        }
+        saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), 'test.xlsx');
+  }
 
   return (
     <div className="container">
-      <h4>Архив</h4>
+      <h4>Архив {filterContext.archive !== null && <i className="fas fa-file-download fa-2x" id="archive-download" onClick={onDownload}></i>}</h4>
         <div id="about" style={{display:'none'}}>
-          <h6>{`Показана история за период с ${date1.replace('T', '  ')} по ${date2.replace('T', '  ')} `}
-          <i className="fas fa-times fa-2x" id="reset-logs" onClick={reset}></i></h6>
+          <h5>{`Показана история за период с ${date1.replace('T', '  ')} по ${date2.replace('T', '  ')} `}
+          <i className="fas fa-times fa-2x" id="reset-logs" onClick={reset}></i></h5>
         </div>
         <div id="archive">
           <form onSubmit={getArchive}>

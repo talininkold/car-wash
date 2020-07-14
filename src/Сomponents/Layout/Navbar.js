@@ -28,7 +28,7 @@ const Navbar = () => {
         <div className="container">
           <div className="logo">
             <i className="fas fa-car fa-2x"></i>
-            <h3>{user === 'washing' ? 'Мойка' : 'АДМИНКА ДЛЯ МОЙКИ'}</h3>
+            <h3>{user === 'washing' ? 'Мойка - Мойка' : 'АДМИНКА ДЛЯ МОЙКИ'}</h3>
           </div>
           <div id="menu">
             {isAuthenticated && 
