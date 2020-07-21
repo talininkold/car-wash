@@ -15,8 +15,9 @@ import {
   RESET_FILTER,
   GET_ARCHIVE,
   CLEAR_ARCHIVE,
-  SET_DATE
-  // GET_FINES
+  SET_DATE,
+  GET_FINES,
+  RESET_FINES
   // REFRESH_LOGS
 } from './types';
 
@@ -113,6 +114,16 @@ export default (state, action) => {
       return {
         ...state,
         archive: null
+      }
+    case GET_FINES:
+      return {
+        ...state,
+        fines: action.payload
+      }
+    case RESET_FINES:
+      return {
+        ...state,
+        fines: []
       }
     case SET_DATE:
       const {date, param} = action.payload;

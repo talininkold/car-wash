@@ -18,7 +18,9 @@ import {
   RESET_FILTER,
   GET_ARCHIVE,
   CLEAR_ARCHIVE,
-  SET_DATE
+  SET_DATE,
+  GET_FINES,
+  RESET_FINES
 } from '../Context/types';
 
 const FilterState = props => {
@@ -35,7 +37,8 @@ const FilterState = props => {
     logsFiltered: null,
     archive: null,
     date1: '',
-    date2: ''
+    date2: '',
+    fines: []
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -153,6 +156,18 @@ const FilterState = props => {
     dispatch({type: SET_DATE, payload: {date, param}})
   }
 
+  const getFines = async (login, key) => {
+    setLoading(true)
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=fines`)
+    const data = await res.json();
+    dispatch({type: GET_FINES, payload: data.arr})
+    setLoading(false)
+  }
+
+  const resetFines = () => {
+    dispatch({type: RESET_FINES})
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -170,6 +185,7 @@ const FilterState = props => {
         archive: state.archive,
         date1: state.date1,
         date2: state.date2,
+        fines: state.fines,
         setLoading,
         onTicketFilter,
         clearFilter,
@@ -186,7 +202,8 @@ const FilterState = props => {
         getArchive,
         clearArchive,
         setDate,
-        // getFines
+        getFines,
+        resetFines
       }}
     >
       {props.children}

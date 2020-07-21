@@ -17,6 +17,7 @@ export const GET_ARCHIVE = 'GET_ARCHIVE';
 export const CLEAR_ARCHIVE = 'CLEAR_ARCHIVE';
 export const GET_FINES = 'GET_FINES';
 export const SET_DATE = 'SET_DATE';
+export const RESET_FINES = 'RESET_FINES';
 
 
 // auth context
