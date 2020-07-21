@@ -14,7 +14,9 @@ import {
   LOGS_FILTER,
   RESET_FILTER,
   GET_ARCHIVE,
-  CLEAR_ARCHIVE
+  CLEAR_ARCHIVE,
+  SET_DATE
+  // GET_FINES
   // REFRESH_LOGS
 } from './types';
 
@@ -111,6 +113,12 @@ export default (state, action) => {
       return {
         ...state,
         archive: null
+      }
+    case SET_DATE:
+      const {date, param} = action.payload;
+      return {
+        ...state,
+        [date]: param
       }
     default:
       return state;

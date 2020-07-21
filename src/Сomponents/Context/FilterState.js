@@ -17,7 +17,8 @@ import {
   LOGS_FILTER,
   RESET_FILTER,
   GET_ARCHIVE,
-  CLEAR_ARCHIVE
+  CLEAR_ARCHIVE,
+  SET_DATE
 } from '../Context/types';
 
 const FilterState = props => {
@@ -32,10 +33,16 @@ const FilterState = props => {
     response: null,
     logs: [],
     logsFiltered: null,
-    archive: null
+    archive: null,
+    date1: '',
+    date2: ''
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
+
+  const setLoading = (status) => {
+    dispatch({type: SET_LOADING, payload: status})
+  }
 
   const onTicketFilter = async (login, key, param, searchtype) => {
     dispatch({type: SET_LOADING, payload: true})
@@ -137,8 +144,13 @@ const FilterState = props => {
     console.log('archive is here')
     dispatch({type: SET_LOADING, payload: false})
   }
+
   const clearArchive = () => {
     dispatch({type: CLEAR_ARCHIVE})
+  }
+
+  const setDate = (date, param) => {
+    dispatch({type: SET_DATE, payload: {date, param}})
   }
 
   return (
@@ -156,6 +168,9 @@ const FilterState = props => {
         logs: state.logs,
         logsFiltered: state.logsFiltered,
         archive: state.archive,
+        date1: state.date1,
+        date2: state.date2,
+        setLoading,
         onTicketFilter,
         clearFilter,
         typeFilter,
@@ -169,7 +184,9 @@ const FilterState = props => {
         logsFilter,
         resetFilter,
         getArchive,
-        clearArchive
+        clearArchive,
+        setDate,
+        // getFines
       }}
     >
       {props.children}

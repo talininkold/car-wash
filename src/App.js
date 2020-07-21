@@ -12,6 +12,7 @@ import Edit from './Сomponents/Pages/Edit'
 import Alert from './Сomponents/Layout/Alert';
 import FilterState from './Сomponents/Context/FilterState';
 import Archive from './Сomponents/Pages/Archive';
+import Fines from './Сomponents/Pages/Fines';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <PrivateRoute exact path="/edit" component={Edit}/>
             <PrivateRouteLogs exact path="/logs" component={Logs} type="admin"/>
             <PrivateRouteLogs exact path="/archive" component={Archive} type="washing"/>
+            <PrivateRouteLogs exact path="/fines" component={Fines} type="washing"/>
             <Route exact path="/" component={FirstPage}/>
           </Switch>       
         </div>

@@ -15,6 +15,8 @@ export const REFRESH_LOGS = 'REFRESH_LOGS';
 export const RESET_FILTER = 'RESET_FILTER';
 export const GET_ARCHIVE = 'GET_ARCHIVE';
 export const CLEAR_ARCHIVE = 'CLEAR_ARCHIVE';
+export const GET_FINES = 'GET_FINES';
+export const SET_DATE = 'SET_DATE';
 
 
 // auth context

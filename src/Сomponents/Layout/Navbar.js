@@ -34,7 +34,10 @@ const Navbar = () => {
             {isAuthenticated && 
             <ul>
               {user === 'washing' ? 
-              <li><Link to="archive">Архив</Link></li>
+              <Fragment>
+                <li><Link to="archive">Архив</Link></li>
+                <li><Link to="fines">Штрафы</Link></li>
+              </Fragment>
               :
               <Fragment>
                 <li><Link to="search">Поиск</Link></li>
