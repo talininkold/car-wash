@@ -13,6 +13,7 @@ import Alert from './Сomponents/Layout/Alert';
 import FilterState from './Сomponents/Context/FilterState';
 import Archive from './Сomponents/Pages/Archive';
 import Fines from './Сomponents/Pages/Fines';
+import Collation from './Сomponents/Pages/Collation';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <PrivateRouteLogs exact path="/logs" component={Logs} type="admin"/>
             <PrivateRouteLogs exact path="/archive" component={Archive} type="washing"/>
             <PrivateRouteLogs exact path="/fines" component={Fines} type="washing"/>
+            <PrivateRouteLogs exact path="/collation" component={Collation} type="washing"/>
             <Route exact path="/" component={FirstPage}/>
           </Switch>       
         </div>

@@ -201,8 +201,25 @@ form.filters {
   }
 }
 
-.fines-td {
-  width: 14%;
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+  div {
+    font-size: 0.8rem;
+    padding: 1rem;
+    margin-top: 10px;
+    border-radius: 0.8rem;
+    background: rgba(150, 150, 150, 0.4);
+    table {
+      text-align: left;
+      border: none;
+      tr, td {
+        border: none;
+        border-bottom: 1px solid #EEEEEE;
+      }
+    }
+  }
 }
 
 

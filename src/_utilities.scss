@@ -23,9 +23,15 @@ select {
 
 .btn {
   margin: 5px 0;
-  padding: 5px;
-  height: 2rem;
+  padding: 7px;
   border: 0;
+  border-radius: 0.3rem;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  &-block {
+    display: block;
+  }
   &-main {
     background: $main-color;
     color: $light-color;
@@ -33,6 +39,10 @@ select {
   &-light {
     background: $secondary-color;
     color: #000;
+    &:hover {
+      background: #fff;
+      color: $main-color;
+    }
   }
   &-success {
     background: $success-color;
@@ -77,6 +87,10 @@ select {
   padding: 15px;
   background: $secondary-color;
   text-align: center;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 table {

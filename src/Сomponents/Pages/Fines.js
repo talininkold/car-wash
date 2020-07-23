@@ -28,7 +28,7 @@ const Fines = () => {
           <tbody id="archive-table">
           {fines.map((tr, i) => (
             <tr key={i}>
-              {tr.map((td,i) => <td key={i} className="fines-td">{td}</td>)}
+              {tr.map((td,i) => <td key={i} style={{width:`${100/5}`}}>{td}</td>)}
             </tr>))}
           </tbody>
         </table> : <p>Нет штрафов</p>)}

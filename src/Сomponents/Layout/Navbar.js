@@ -37,6 +37,7 @@ const Navbar = () => {
               <Fragment>
                 <li><Link to="archive">Архив</Link></li>
                 <li><Link to="fines">Штрафы</Link></li>
+                <li><Link to="collation">Сверка</Link></li>
               </Fragment>
               :
               <Fragment>
