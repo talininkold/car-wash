@@ -1,12 +1,11 @@
 import React, {useState, Fragment, useContext} from 'react'
-import FilterContext from '../Context/filterContext'
+// import FilterContext from '../Context/filterContext'
 import AuthContext from '../Context/authContext/authContext'
-import Spinner from './Spinner2'
 
-const Card = ({headers, params}) => {
-  // const {loading} = useContext(FilterContext)
-  const {login, key} = useContext(AuthContext)
+const Card = ({headers, params, onLoading}) => {
 
+  const {login, key, setAlert} = useContext(AuthContext)
+  
   const [first, setFirst] = useState(params[0])
   const [second, setSecond] = useState(params[1])
   const [third, setThird] = useState(params[2])
@@ -20,38 +19,34 @@ const Card = ({headers, params}) => {
   const onAgree = async () => {
     const promt = window.confirm('Cогласовать данную карточку?')
     if (promt) {
-      setLoading(true)
+      onLoading(true); setLoading(true)
       try {
-        const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=collationAccept&date1=${date1}&date2=${date2}&payment=${payment}`)
-        const data = await res.json()
+        await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=collationAccept&date1=${date1}&date2=${date2}&payment=${payment}`)
         setFirst(false)
         setSecond(true)
+        setAlert('Успешно согласовано', 'success')
       } catch (error) {
-        console.log(error)
+        setAlert('Произошла ошибка', 'danger')
       }
-      setLoading(false)
+      onLoading(false); setLoading(false)
     }
   }
 
   const onReject = async () => {
     const promt = window.confirm('Оспорить данную карточку?')
     if (promt) {
-      setLoading(true)
+      onLoading(true); setLoading(true)
       try {
-        const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=collationDeny&date1=${date1}&date2=${date2}&payment=${payment}`)
-        const data = await res.json()
+        await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=collationDeny&date1=${date1}&date2=${date2}&payment=${payment}`)
         setFirst(true)
         setSecond(false)
+        setAlert('Свера отклонена', 'success')
       } catch (error) {
-        console.log(error)
+        setAlert('Произошла ошибка', 'danger')
       }
-      setLoading(false)
+      onLoading(false); setLoading(false)
     }
   }
-
-  // if (loading) {
-  //   return <Spinner />
-  // }
 
   return (
     <div style={first ? redBg : grayBg}>
@@ -68,10 +63,14 @@ const Card = ({headers, params}) => {
           </tr>)}
         </tbody>
       </table>
-      {(!second || first) && <a className="btn btn-block btn-main" onClick={onAgree}><i className="fas fa-check"></i> Cогласовать</a>}
-      {(second || !first) && <a className="btn btn-block btn-light" onClick={onReject}><i className="fas fa-times-circle"></i> Оспорить</a>}
-      {second * third === 1 &&
-      <a className="btn btn-block btn-success"><i className="fas fa-download"></i> Cкачать</a>
+      {!loading && 
+        <Fragment>
+          {(!second || first) && <a className="btn btn-block btn-main" onClick={onAgree}><i className="fas fa-check"></i> Cогласовать</a>}
+          {(second || !first) && <a className="btn btn-block btn-light" onClick={onReject}><i className="fas fa-times-circle"></i> Оспорить</a>}
+          {second * third === 1 &&
+          <a className="btn btn-block btn-success"><i className="fas fa-download"></i> Cкачать</a>
+          }
+        </Fragment>
       }
     </div>
   )
