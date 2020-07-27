@@ -17,7 +17,8 @@ import {
   CLEAR_ARCHIVE,
   SET_DATE,
   GET_FINES,
-  RESET_FINES
+  RESET_FINES,
+  GET_COLLATIONS
   // REFRESH_LOGS
 } from './types';
 
@@ -130,6 +131,13 @@ export default (state, action) => {
       return {
         ...state,
         [date]: param
+      }
+    case GET_COLLATIONS:
+      const {headers, cards} = action.payload;
+      return {
+        ...state,
+        headers: headers,
+        cards: cards
       }
     default:
       return state;

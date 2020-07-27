@@ -20,7 +20,8 @@ import {
   CLEAR_ARCHIVE,
   SET_DATE,
   GET_FINES,
-  RESET_FINES
+  RESET_FINES,
+  GET_COLLATIONS
 } from '../Context/types';
 
 const FilterState = props => {
@@ -38,7 +39,9 @@ const FilterState = props => {
     archive: null,
     date1: '',
     date2: '',
-    fines: []
+    fines: [],
+    headers: [],
+    cards: []
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -168,6 +171,29 @@ const FilterState = props => {
     dispatch({type: RESET_FINES})
   }
 
+  const getCollations = async (login, token) => {
+    setLoading(true)
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${token}&request=collation`)
+    const data = await res.json()
+    // const testArr = [
+    //   ["Мойка отказала","Мойка подтвердила","Проверили","Начало","Конец","К выплате","Операции","Аренда","К взаимозачету","Компенсации","Штрафы b2c","Штрафы карш","Штрафы b2b","Такси Затраты","Такси Операции","Физики\tЗатраты","Физики Операции","Каршеринг Затраты","Каршеринг Операции","Затраты","Операции"],
+    //   [false,false,false,"2020-07-01","2020-07-15",40160,259,"","",0,-8000,0,"",4690,70,0,0,43470,189,null,null],
+    //   [false,true,true,"2020-09-01","2020-08-15",4055,3220,"","",0,-600,0,"",4050,70,0,0,50670,300,null,null],
+    //   [true,true,true,"2020-08-01","2020-04-15",4000,2225,"","",0,-500,0,"",9050,70,0,0,42270,200,null,null]]
+    // console.log(testArr)
+    if (data.arr.length) {
+      const newArr = data.arr.filter((i, ind) => ind > 0);
+      dispatch({
+        type: GET_COLLATIONS, 
+        payload: {
+          headers: data.arr[0],
+          cards: newArr
+        }
+      })
+    }
+    setLoading(false)
+  }
+
   return (
     <FilterContext.Provider
       value={{
@@ -186,6 +212,8 @@ const FilterState = props => {
         date1: state.date1,
         date2: state.date2,
         fines: state.fines,
+        headers: state.headers,
+        cards: state.cards,
         setLoading,
         onTicketFilter,
         clearFilter,
@@ -203,7 +231,8 @@ const FilterState = props => {
         clearArchive,
         setDate,
         getFines,
-        resetFines
+        resetFines,
+        getCollations
       }}
     >
       {props.children}
