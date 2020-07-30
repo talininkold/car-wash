@@ -47,10 +47,10 @@ const Navbar = () => {
               </Fragment>
               }
             </ul>}
+            {user === "washing" && <p>{login}</p>}
             {isAuthenticated && <a type="button" href='' onClick={() => {authContext.logOut(); 
                 // filterContext.clearAll()
             }}>Выйти</a>}
-            {user === "washing" && <p>{login}</p>}
           </div>
         </div>
       </nav>
