@@ -47,6 +47,22 @@ const Card = ({headers, params, onLoading}) => {
       onLoading(false); setLoading(false)
     }
   }
+  const onDownload = async (param) => {
+    
+      onLoading(true); setLoading(true)
+      try {
+        const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=${param}`)
+        const data = await res.json()
+        const download = window.confirm('Скачать документ?')
+        if (download) {
+          window.open(data.url)
+        }
+      } catch (error) {
+        setAlert('Произошла ошибка', 'danger')
+      }
+      onLoading(false); setLoading(false)
+    }
+  
 
   return (
     <div style={first ? redBg : grayBg}>
@@ -68,7 +84,10 @@ const Card = ({headers, params, onLoading}) => {
           {(!second || first) && <a className="btn btn-block btn-main" onClick={onAgree}><i className="fas fa-check"></i> Cогласовать</a>}
           {(second || !first) && <a className="btn btn-block btn-light" onClick={onReject}><i className="fas fa-times-circle"></i> Оспорить</a>}
           {second * third === 1 &&
-          <a className="btn btn-block btn-success"><i className="fas fa-download"></i> Cкачать</a>
+          <Fragment>
+            <a className="btn btn-block btn-success" onClick={() => onDownload('reconciliation')}><i className="fas fa-download"></i> Cкачать акт выполненных работ</a>
+            <a className="btn btn-block btn-success" onClick={() => onDownload('')}><i className="fas fa-download"></i> Cкачать счет</a>
+          </Fragment>
           }
         </Fragment>
       }

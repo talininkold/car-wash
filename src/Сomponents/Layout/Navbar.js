@@ -10,7 +10,7 @@ const Navbar = () => {
   const authContext = useContext(AuthContext)
   const filterContext = useContext(FilterContext)
 
-  const {isAuthenticated, user} = authContext;
+  const {isAuthenticated, user, login} = authContext;
   const {response} = filterContext;
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const Navbar = () => {
             {isAuthenticated && <a type="button" href='' onClick={() => {authContext.logOut(); 
                 // filterContext.clearAll()
             }}>Выйти</a>}
+            {user === "washing" && <p>{login}</p>}
           </div>
         </div>
       </nav>
