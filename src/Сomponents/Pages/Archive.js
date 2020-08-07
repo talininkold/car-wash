@@ -155,7 +155,7 @@ const Archive = () => {
           <table>
             <tbody id='archive-table'>
               {archive === "Error" ? (
-                <p>Произошла ошибка</p>
+                <p>Нет данных</p>
               ) : (
                 archive.map((tr, i) => (
                   <tr key={i}>

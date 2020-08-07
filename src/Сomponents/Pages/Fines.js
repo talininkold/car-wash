@@ -30,7 +30,7 @@ const Fines = () => {
       {loading ? (
         <Spinner />
       ) : fines === "Error" ? (
-        <p>Произошла ошибка</p>
+        <p>Нет штрафов</p>
       ) : fines.length > 1 ? (
         <table>
           <tbody id='archive-table'>
