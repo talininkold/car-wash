@@ -78,31 +78,31 @@ const Archive = () => {
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <h4>
-        Архив{" "}
+        История операций{" "}
         {archive !== null &&
           (archiveType === "archive" ? "такси и физ. лица" : "каршеринга")}
         {archive !== null && archive !== "Error" && (
           <i
-            className='fas fa-file-download fa-2x'
-            id='archive-download'
+            className="fas fa-file-download fa-2x"
+            id="archive-download"
             onClick={onDownload}
           ></i>
         )}
       </h4>
       {archive === null && (
         <select
-          className='browser-default'
+          className="browser-default"
           value={archiveType}
           onChange={(e) => setArchiveType(e.target.value)}
         >
-          <option value='archive'>такси и физ. лица</option>
-          <option value='archiveСarsharing'>каршеринг</option>
+          <option value="archive">такси и физ. лица</option>
+          <option value="archiveСarsharing">каршеринг</option>
         </select>
       )}
       {archive !== null && (
-        <div id='about'>
+        <div id="about">
           <h5>
             {archive !== "Error"
               ? `Показана история за период с ${date1.replace(
@@ -111,36 +111,36 @@ const Archive = () => {
                 )} по ${date2.replace("T", "  ")} `
               : "Cбросить"}
             <i
-              className='fas fa-times fa-2x'
-              id='reset-logs'
+              className="fas fa-times fa-2x"
+              id="reset-logs"
               onClick={reset}
             ></i>
           </h5>
         </div>
       )}
       {archive === null && (
-        <div id='archive'>
+        <div id="archive">
           <form onSubmit={getArchiveData}>
-            <label htmlFor='date1'>Укажите начальную дату</label>
+            <label htmlFor="date1">Укажите начальную дату</label>
             <input
-              id='date1'
-              type='date'
+              id="date1"
+              type="date"
               required
               onChange={(e) => setDate("date1", e.target.value)}
               value={date1}
             />
-            <label htmlFor='date2'>Укажите конечную дату</label>
+            <label htmlFor="date2">Укажите конечную дату</label>
             <input
-              id='date2'
-              type='date'
+              id="date2"
+              type="date"
               required
               onChange={(e) => setDate("date2", e.target.value)}
               value={date2}
             />
             <button
-              className='btn btn-main'
-              id='show-history'
-              type='submit'
+              className="btn btn-main"
+              id="show-history"
+              type="submit"
               style={{ marginBottom: "10px" }}
             >
               Показать
@@ -153,7 +153,7 @@ const Archive = () => {
       ) : (
         archive !== null && (
           <table>
-            <tbody id='archive-table'>
+            <tbody id="archive-table">
               {archive === "Error" ? (
                 <p>Нет данных</p>
               ) : (
