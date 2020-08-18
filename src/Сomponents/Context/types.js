@@ -20,6 +20,7 @@ export const GET_FINES = "GET_FINES";
 export const SET_DATE = "SET_DATE";
 export const RESET_FINES = "RESET_FINES";
 export const GET_COLLATIONS = "GET_COLLATIONS";
+export const SET_FINE_TYPE = "SET_FINE_TYPE";
 
 // auth context
 export const LOGIN_USER = "LOGIN_USER";

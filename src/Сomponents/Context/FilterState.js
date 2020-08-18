@@ -23,6 +23,7 @@ import {
   GET_FINES,
   RESET_FINES,
   GET_COLLATIONS,
+  SET_FINE_TYPE,
 } from "../Context/types";
 
 const FilterState = (props) => {
@@ -42,6 +43,7 @@ const FilterState = (props) => {
     date1: "",
     date2: "",
     fines: [],
+    finesType: "fines",
     headers: [],
     cards: [],
   };
@@ -187,10 +189,13 @@ const FilterState = (props) => {
     dispatch({ type: SET_DATE, payload: { date, param } });
   };
 
-  const getFines = async (login, key) => {
+  const setFinesType = (value) =>
+    dispatch({ type: SET_FINE_TYPE, payload: value });
+
+  const getFines = async (login, key, type) => {
     setLoading(true);
     const res = await fetch(
-      `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=fines`
+      `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=${type}`
     );
     const data = await res.json();
     dispatch({ type: GET_FINES, payload: data.arr });
@@ -245,6 +250,7 @@ const FilterState = (props) => {
         date1: state.date1,
         date2: state.date2,
         fines: state.fines,
+        finesType: state.finesType,
         headers: state.headers,
         cards: state.cards,
         setLoading,
@@ -264,6 +270,7 @@ const FilterState = (props) => {
         setArchiveType,
         clearArchive,
         setDate,
+        setFinesType,
         getFines,
         resetFines,
         getCollations,

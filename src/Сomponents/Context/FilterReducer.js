@@ -20,6 +20,7 @@ import {
   GET_FINES,
   RESET_FINES,
   GET_COLLATIONS,
+  SET_FINE_TYPE,
   // REFRESH_LOGS
 } from "./types";
 
@@ -123,6 +124,11 @@ export default (state, action) => {
       return {
         ...state,
         archive: null,
+      };
+    case SET_FINE_TYPE:
+      return {
+        ...state,
+        finesType: action.payload,
       };
     case GET_FINES:
       return {
