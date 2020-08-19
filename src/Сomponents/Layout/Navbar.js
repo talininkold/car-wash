@@ -41,6 +41,9 @@ const Navbar = () => {
                     <Link to="fines">Штрафы</Link>
                   </li>
                   <li>
+                    <Link to="feedback">Отзывы</Link>
+                  </li>
+                  <li>
                     <Link to="collation">Сверка</Link>
                   </li>
                 </Fragment>
