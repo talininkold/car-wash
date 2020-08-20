@@ -46,7 +46,9 @@ const Feedback = () => {
             {feedback.map((tr, i) => (
               <tr key={i}>
                 {tr.map((td, i) => (
-                  <td key={i}>{td}</td>
+                  <td key={i} style={{ width: `${100 / 5}%` }}>
+                    {td}
+                  </td>
                 ))}
               </tr>
             ))}

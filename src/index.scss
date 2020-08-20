@@ -1,12 +1,12 @@
-@import 'variables';
-@import 'utilities';
+@import "variables";
+@import "utilities";
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -21,7 +21,7 @@ nav {
   // position: sticky;
   // top: 0;
   // left: 0;
-  
+
   div.container {
     display: flex;
     flex-direction: row;
@@ -39,35 +39,34 @@ nav {
       flex-direction: row;
       align-items: center;
 
-        i {
-          margin-right: 10px;
-        }
+      i {
+        margin-right: 10px;
+      }
     }
 
-      ul {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        padding: 0;
-        // margin-right: 50px;
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      // margin-right: 50px;
+    }
+    a {
+      display: inline-block;
+      padding: 15px;
+      text-decoration: none;
+      color: $light-color;
+      cursor: pointer;
+      &:hover {
+        background: $hover-color;
+        color: #000;
       }
-      a {
-        display: inline-block;
-        padding: 15px;
-        text-decoration: none;
-        color: $light-color;
-        cursor: pointer;
-        &:hover {
-          background: $hover-color;
-          color: #000;
-        }
-      }
-      p {
-        color: #ECF0F1;
-        // margin-left: 40px;
-      }
+    }
+    p {
+      color: #ecf0f1;
+      // margin-left: 40px;
+    }
   }
-
 }
 
 // Spinner linear
@@ -96,7 +95,7 @@ nav {
 }
 .loader:before,
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }
@@ -201,8 +200,13 @@ form.filters {
     margin-bottom: 0;
   }
   tr:nth-child(1) {
-    font-weight: bold;
     background: $header-color;
+    td {
+      font-weight: bold;
+      padding: 10px;
+      font-size: 0.8rem;
+      border: 1px solid #ccc;
+    }
   }
 }
 
@@ -226,20 +230,20 @@ form.filters {
     table {
       text-align: left;
       border: none;
-      tr, td {
+      tr,
+      td {
         border: none;
-        border-bottom: 1px solid #EEEEEE;
+        border-bottom: 1px solid #eeeeee;
       }
     }
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   nav {
-
     height: auto;
     width: 100%;
-    
+
     div.container {
       display: flex;
       flex-direction: column;
@@ -250,29 +254,28 @@ form.filters {
         max-width: 10px auto !important;
       }
 
-        #menu {
-          display: flex;
-          flex-direction: row;
-        }
+      #menu {
+        display: flex;
+        flex-direction: row;
+      }
 
-        h3 {
-          margin: 5px auto;
-        }
-  
-        ul {
-          margin: 0;
-          padding: 5px;
-          list-style: none;
-          display: flex;
-          flex-direction: row;
-          margin-right: 60px;
-        }
-        a {
-          display: block;
-          padding: 15px;
-        }
+      h3 {
+        margin: 5px auto;
+      }
+
+      ul {
+        margin: 0;
+        padding: 5px;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        margin-right: 60px;
+      }
+      a {
+        display: block;
+        padding: 15px;
+      }
     }
-  
   }
   div.form {
     display: grid;
@@ -287,7 +290,7 @@ form.filters {
       width: 200px;
     }
   }
-  
+
   #ticket-filter {
     width: 200px;
     display: flex;
@@ -298,33 +301,30 @@ form.filters {
   }
 }
 
-@media(max-width: 690px) {
+@media (max-width: 690px) {
   nav {
-
     height: auto;
     width: 100%;
-    
+
     div.container {
+      width: 370px;
+      padding: 0;
 
-        width: 370px;
-        padding: 0;
+      #menu {
+        display: flex;
+        flex-direction: column;
+      }
 
-        #menu {
-          display: flex;
-          flex-direction: column;
+      ul {
+        margin: 0;
+        padding: 5px;
+        margin-right: 0px;
+
+        a {
+          padding: 7px;
         }
-  
-        ul {
-          margin: 0;
-          padding: 5px;
-          margin-right: 0px;
-
-          a {
-            padding: 7px;
-          }
-        }
+      }
     }
-  
   }
   div.form {
     display: grid;
@@ -339,7 +339,7 @@ form.filters {
       width: 150px;
     }
   }
-  
+
   #ticket-filter {
     width: 150px;
     display: flex;
