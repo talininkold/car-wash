@@ -35,6 +35,9 @@ const Navbar = () => {
               {user === "washing" ? (
                 <Fragment>
                   <li>
+                    <Link to="main">Главная</Link>
+                  </li>
+                  <li>
                     <Link to="archive">История операций</Link>
                   </li>
                   <li>
@@ -64,7 +67,7 @@ const Navbar = () => {
               )}
             </ul>
           )}
-          {user === "washing" && <p>{login}</p>}
+          {user === "washing" && <p id="nav-login">{login}</p>}
           {isAuthenticated && (
             <a
               type="button"

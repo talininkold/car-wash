@@ -24,6 +24,7 @@ import {
   RESET_FINES,
   GET_COLLATIONS,
   SET_FINE_TYPE,
+  GET_FILES,
 } from "../Context/types";
 
 const FilterState = (props) => {
@@ -46,6 +47,7 @@ const FilterState = (props) => {
     finesType: "fines",
     headers: [],
     cards: [],
+    files: [],
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -231,6 +233,16 @@ const FilterState = (props) => {
     setLoading(false);
   };
 
+  const getFiles = async () => {
+    setLoading(true);
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=mainPage"
+    );
+    const data = await res.json();
+    dispatch({ type: GET_FILES, payload: data.file });
+    setLoading(false);
+  };
+
   return (
     <FilterContext.Provider
       value={{
@@ -253,6 +265,7 @@ const FilterState = (props) => {
         finesType: state.finesType,
         headers: state.headers,
         cards: state.cards,
+        files: state.files,
         setLoading,
         onTicketFilter,
         clearFilter,
@@ -274,6 +287,7 @@ const FilterState = (props) => {
         getFines,
         resetFines,
         getCollations,
+        getFiles,
       }}
     >
       {props.children}

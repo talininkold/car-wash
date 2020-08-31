@@ -15,6 +15,7 @@ import Archive from "./Сomponents/Pages/Archive";
 import Fines from "./Сomponents/Pages/Fines";
 import Collation from "./Сomponents/Pages/Collation";
 import Feedback from "./Сomponents/Pages/Feedback";
+import Main from "./Сomponents/Pages/Main";
 
 function App() {
   return (
@@ -57,6 +58,12 @@ function App() {
                   exact
                   path="/feedback"
                   component={Feedback}
+                  type="washing"
+                />
+                <PrivateRouteLogs
+                  exact
+                  path="/main"
+                  component={Main}
                   type="washing"
                 />
                 <Route exact path="/" component={FirstPage} />

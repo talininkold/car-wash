@@ -21,6 +21,7 @@ import {
   RESET_FINES,
   GET_COLLATIONS,
   SET_FINE_TYPE,
+  GET_FILES,
   // REFRESH_LOGS
 } from "./types";
 
@@ -152,6 +153,11 @@ export default (state, action) => {
         ...state,
         headers: headers,
         cards: cards,
+      };
+    case GET_FILES:
+      return {
+        ...state,
+        files: action.payload,
       };
     default:
       return state;
