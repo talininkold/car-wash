@@ -68,23 +68,18 @@ const Card = ({ headers, params, onLoading }) => {
     setReason("");
   };
 
-  const onDownload = async () => {
+  const onDownload = async (param) => {
     onLoading(true);
     setLoading(true);
     try {
-      const reconciliation = await fetch(
-        `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=reconciliation`
+      const res = await fetch(
+        `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=${param}`
       );
-      const reconciliationData = await reconciliation.json();
-      const invoice = await fetch(
-        `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=invoice`
-      );
-      const invoiceData = await invoice.json();
+      const data = await res.json();
       onLoading(false);
       setLoading(false);
       return {
-        reconciliation: reconciliationData.url,
-        invoice: invoiceData.url,
+        doc_url: data.url,
       };
     } catch (error) {
       setAlert("Произошла ошибка", "danger");
@@ -94,18 +89,13 @@ const Card = ({ headers, params, onLoading }) => {
     }
   };
 
-  const openInNewTab = async () => {
-    const urls = await onDownload();
-    if (urls !== null) {
-      Object.assign(document.createElement("a"), {
+  const openInNewTab = async (param) => {
+    const url = await onDownload(param);
+    if (url !== null)
+      return Object.assign(document.createElement("a"), {
         target: "_blank",
-        href: urls.reconciliation,
+        href: url.doc_url,
       }).click();
-      Object.assign(document.createElement("a"), {
-        target: "_blank",
-        href: urls.invoice,
-      }).click();
-    }
   };
 
   return (
@@ -139,9 +129,20 @@ const Card = ({ headers, params, onLoading }) => {
       {!loading && (
         <Fragment>
           {second * third === 1 && (
-            <a className="btn btn-block btn-success" onClick={openInNewTab}>
-              <i className="fas fa-download"></i> Скачать счет и акт по уcлугам
-            </a>
+            <>
+              <a
+                className="btn btn-block btn-success"
+                onClick={() => openInNewTab("invoice")}
+              >
+                <i className="fas fa-download"></i> Скачать счет
+              </a>
+              <a
+                className="btn btn-block btn-success"
+                onClick={() => openInNewTab("reconciliation")}
+              >
+                <i className="fas fa-download"></i> Скачать акт по уcлугам
+              </a>
+            </>
           )}
           {(!second || first) && (
             <a className="btn btn-block btn-main" onClick={onAgree}>
