@@ -22,6 +22,7 @@ export const RESET_FINES = "RESET_FINES";
 export const GET_COLLATIONS = "GET_COLLATIONS";
 export const SET_FINE_TYPE = "SET_FINE_TYPE";
 export const GET_FILES = "GET_FILES";
+export const GET_STATS = "GET_STATS";
 
 // auth context
 export const LOGIN_USER = "LOGIN_USER";

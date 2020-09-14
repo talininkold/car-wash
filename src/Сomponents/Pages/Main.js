@@ -34,7 +34,7 @@ const Main = () => {
             <li key={index}>
               {file[0]}{" "}
               <a href={file[1]} target="_blank">
-                <i class="fas fa-download" />
+                <i className="fas fa-download" />
               </a>
             </li>
           ))}

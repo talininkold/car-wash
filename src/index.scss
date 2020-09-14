@@ -453,3 +453,48 @@ form.filters {
   top: 45vh;
   left: 0;
 }
+
+#stat-table {
+  max-width: 600px;
+  min-width: 300px;
+  width: 60%;
+  margin-right: auto;
+  margin-left: 0;
+  margin-bottom: 3rem;
+  table {
+    text-align: left;
+    thead {
+      background: none !important;
+      padding-bottom: 10px;
+      th {
+        border: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+    }
+    tbody {
+      td {
+        border: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      tr:nth-child(1) {
+        font-weight: bold;
+        td {
+          padding-bottom: 1rem;
+        }
+      }
+      tr:nth-child(2) {
+        background-color: $main-blue-color;
+        font-weight: bold;
+      }
+      tr:nth-child(4),
+      tr:nth-child(10),
+      tr:nth-child(12),
+      tr:nth-child(14) {
+        background-color: $light-blue-color;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import AuthContext from "../Context/authContext/authContext";
 import Spinner from "../Layout/Spinner2";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import StatTable from "../Layout/StatTable";
 
 const Archive = () => {
   const {
@@ -28,7 +29,18 @@ const Archive = () => {
     console.log(date1U);
     console.log(date1U.getTime());
     console.log(date2U.getTime());
-    getArchive(archiveType, login, key, date1U.getTime(), date2U.getTime());
+    const firstDate = date1U.getTime() <= date2U.getTime() ? date1 : date2;
+    const secondDate = date1U.getTime() <= date2U.getTime() ? date2 : date1;
+    console.log("first date", firstDate, "second date", secondDate);
+    getArchive(
+      archiveType,
+      login,
+      key,
+      date1U.getTime(),
+      date2U.getTime(),
+      firstDate,
+      secondDate
+    );
   };
   const reset = () => {
     clearArchive();
@@ -83,13 +95,13 @@ const Archive = () => {
         История операций{" "}
         {archive !== null &&
           (archiveType === "archive" ? "такси и физ. лица" : "каршеринга")}
-        {archive !== null && archive !== "Error" && (
+        {/* {archive !== null && archive !== "Error" && (
           <i
             className="fas fa-file-download fa-2x"
             id="archive-download"
             onClick={onDownload}
           ></i>
-        )}
+        )} */}
       </h4>
       {archive === null && (
         <select
@@ -148,31 +160,35 @@ const Archive = () => {
           </form>
         </div>
       )}
+      <StatTable onDownload={onDownload} />
       {loading ? (
         <Spinner />
       ) : (
         archive !== null && (
-          <table>
-            <tbody id="archive-table">
-              {archive === "Error" ? (
-                <p>Нет данных</p>
-              ) : (
-                archive.map((tr, i) => (
-                  <tr key={i}>
-                    {tr.map((td, i) => (
-                      <td key={i}>
-                        {typeof td === "object" && td !== null ? (
-                          td.map((i, index) => <p key={index}>{i}</p>)
-                        ) : (
-                          <p>{td}</p>
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+          <>
+            {/* <StatTable /> */}
+            <table>
+              <tbody id="archive-table">
+                {archive === "Error" ? (
+                  <p>Нет данных</p>
+                ) : (
+                  archive.map((tr, i) => (
+                    <tr key={i}>
+                      {tr.map((td, i) => (
+                        <td key={i}>
+                          {typeof td === "object" && td !== null ? (
+                            td.map((i, index) => <p key={index}>{i}</p>)
+                          ) : (
+                            <p>{td}</p>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </>
         )
       )}
     </div>

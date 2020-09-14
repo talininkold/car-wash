@@ -22,6 +22,7 @@ import {
   GET_COLLATIONS,
   SET_FINE_TYPE,
   GET_FILES,
+  GET_STATS,
   // REFRESH_LOGS
 } from "./types";
 
@@ -116,6 +117,11 @@ export default (state, action) => {
         ...state,
         archive: action.payload,
       };
+    case GET_STATS:
+      return {
+        ...state,
+        stat: action.payload,
+      };
     case SET_ARCHIVE_TYPE:
       return {
         ...state,
@@ -125,6 +131,7 @@ export default (state, action) => {
       return {
         ...state,
         archive: null,
+        stat: null,
       };
     case SET_FINE_TYPE:
       return {
