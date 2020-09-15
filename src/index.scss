@@ -220,11 +220,11 @@ form.filters {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 0.5rem;
   div {
+    min-width: 285px;
     font-size: 0.8rem;
     padding: 1rem;
     margin-top: 10px;
-    border-radius: 0.8rem;
-    background: rgba(150, 150, 150, 0.4);
+    border-radius: 1rem;
     a.download {
       text-decoration: none;
       display: inline-block;
@@ -233,12 +233,43 @@ form.filters {
       padding: 3px;
     }
     table {
+      font-size: 1rem;
+      font-weight: 500;
       text-align: left;
       border: none;
       tr,
       td {
         border: none;
-        border-bottom: 1px solid #eeeeee;
+        // border-bottom: 1px solid #eeeeee;
+      }
+      tr:nth-child(3) {
+        background-color: $main-blue-color;
+        border-bottom: 2px solid black;
+        td {
+          padding-top: 0.5rem !important;
+          padding-bottom: 0.5rem !important;
+        }
+      }
+      tr:nth-child(5),
+      tr:nth-child(8),
+      tr:nth-child(11),
+      tr:nth-child(14) {
+        background-color: #d9e2f3;
+      }
+      tr:nth-child(16) {
+        td {
+          padding-bottom: 1rem;
+        }
+      }
+      tr:nth-child(18) {
+        border-bottom: 2px solid black;
+      }
+      tr:nth-child(4),
+      tr:nth-child(6),
+      tr:nth-child(9),
+      tr:nth-child(12),
+      tr:nth-child(15) {
+        font-weight: normal;
       }
     }
   }

@@ -115,14 +115,17 @@ const Card = ({ headers, params, onLoading }) => {
       <table>
         <tbody>
           {leftColumn.map((tr, index) => (
-            <tr key={index}>
-              <td>{tr}</td>
-              <td className="bold">
-                {rightColumn[index] === null || rightColumn[index] === ""
-                  ? "-"
-                  : rightColumn[index]}
-              </td>
-            </tr>
+            <Fragment key={index}>
+              <tr>
+                <td>{tr}</td>
+                <td>
+                  {rightColumn[index] === null || rightColumn[index] === ""
+                    ? "-"
+                    : rightColumn[index]}
+                </td>
+              </tr>
+              {index === 2 && <tr style={{ height: "0.7rem" }}></tr>}
+            </Fragment>
           ))}
         </tbody>
       </table>
@@ -145,13 +148,14 @@ const Card = ({ headers, params, onLoading }) => {
             </>
           )}
           {(!second || first) && (
-            <a className="btn btn-block btn-main" onClick={onAgree}>
-              <i className="fas fa-check"></i> Cогласовать
+            <a className="btn btn-block btn-success" onClick={onAgree}>
+              <i className="fas fa-check"></i> Подтвердить
             </a>
           )}
           {(second || !first) && (
             <a className="btn btn-block btn-light" onClick={showModal}>
-              <i className="fas fa-times-circle"></i> Оспорить
+              <i className="fas fa-times-circle"></i> Оспорить и oставить
+              комментарий
             </a>
           )}
           {/* <Fragment>
@@ -168,7 +172,7 @@ const redBg = {
   backgroundColor: "#F0A5A5",
 };
 const grayBg = {
-  backgroundColor: "#96969666",
+  backgroundColor: "#f2f2f2",
 };
 const input = {
   width: "100%",

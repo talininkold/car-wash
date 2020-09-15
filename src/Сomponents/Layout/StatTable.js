@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import FilterContext from "../Context/filterContext";
 
 const StatTable = ({ onDownload }) => {
@@ -47,15 +47,15 @@ const StatTable = ({ onDownload }) => {
                   <td>{date1}</td>
                   <td>{date2}</td>
                 </tr>
-                {hardcodeArr.map((item, i) => (
-                  <>
-                    <tr key={i}>
-                      <td>{values[item[0]] ? values[item[0]] : item[0]}</td>
-                      <td>{item[1] === null ? "-" : item[1]}</td>
-                      <td>{item[2] === null ? "-" : item[2]}</td>
+                {stat.map((item, i) => (
+                  <Fragment key={i}>
+                    <tr>
+                      {item.map((td, i) => (
+                        <td key={i}>{td === null ? "-" : td}</td>
+                      ))}
                     </tr>
                     {i === 0 && <tr style={{ height: "1.5rem" }}></tr>}
-                  </>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
@@ -65,7 +65,10 @@ const StatTable = ({ onDownload }) => {
                 style={{ width: "100%" }}
                 onClick={onDownload}
               >
-                <i class="fas fa-arrow-down" style={{ marginRight: "1rem" }} />
+                <i
+                  className="fas fa-arrow-down"
+                  style={{ marginRight: "1rem" }}
+                />
                 Скачать подробную выгрузку
               </button>
             )}
