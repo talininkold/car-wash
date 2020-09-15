@@ -8,6 +8,8 @@ const Card = ({ headers, params, onLoading }) => {
 
   const [modal, setModal] = useState(false);
   const [reason, setReason] = useState("");
+  const [act, setAct] = useState("");
+  const [bill, setBill] = useState("");
 
   const [first, setFirst] = useState(params[0]);
   const [second, setSecond] = useState(params[1]);
@@ -59,6 +61,8 @@ const Card = ({ headers, params, onLoading }) => {
       );
       setFirst(true);
       setSecond(false);
+      setBill("");
+      setAct("");
       setAlert("Свера отклонена", "success");
     } catch (error) {
       setAlert("Произошла ошибка", "danger");
@@ -68,34 +72,52 @@ const Card = ({ headers, params, onLoading }) => {
     setReason("");
   };
 
+  // const onDownload = async (param) => {
+  //   onLoading(true);
+  //   setLoading(true);
+  //   try {
+  //     const res = await fetch(
+  //       `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=${param}`
+  //     );
+  //     const data = await res.json();
+  //     onLoading(false);
+  //     setLoading(false);
+  //     return {
+  //       doc_url: data.url,
+  //     };
+  //   } catch (error) {
+  //     setAlert("Произошла ошибка", "danger");
+  //     onLoading(false);
+  //     setLoading(false);
+  //     return null;
+  //   }
+  // };
+
+  // const openInNewTab = async (param) => {
+  //   const url = await onDownload(param);
+  //   if (url !== null)
+  //     return Object.assign(document.createElement("a"), {
+  //       target: "_blank",
+  //       href: url.doc_url,
+  //     }).click();
+  // };
+
   const onDownload = async (param) => {
     onLoading(true);
     setLoading(true);
     try {
       const res = await fetch(
-        `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=${param}`
+        `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?user=${login}&key=${key}&request=${param}&date1=${date1}&date2=${date2}`
       );
       const data = await res.json();
-      onLoading(false);
-      setLoading(false);
-      return {
-        doc_url: data.url,
-      };
+
+      if (param === "reconciliation") setAct(data.url);
+      if (param === "invoice") setBill(data.url);
     } catch (error) {
       setAlert("Произошла ошибка", "danger");
-      onLoading(false);
-      setLoading(false);
-      return null;
     }
-  };
-
-  const openInNewTab = async (param) => {
-    const url = await onDownload(param);
-    if (url !== null)
-      return Object.assign(document.createElement("a"), {
-        target: "_blank",
-        href: url.doc_url,
-      }).click();
+    onLoading(false);
+    setLoading(false);
   };
 
   return (
@@ -132,20 +154,56 @@ const Card = ({ headers, params, onLoading }) => {
       {!loading && (
         <Fragment>
           {second * third === 1 && (
-            <>
-              <a
-                className="btn btn-block btn-success"
-                onClick={() => openInNewTab("invoice")}
-              >
-                <i className="fas fa-download"></i> Скачать счет
-              </a>
-              <a
-                className="btn btn-block btn-success"
-                onClick={() => openInNewTab("reconciliation")}
-              >
-                <i className="fas fa-download"></i> Скачать акт по уcлугам
-              </a>
-            </>
+            <Fragment>
+              {bill !== "" ? (
+                <a
+                  href={bill}
+                  className="download"
+                  target="_blank"
+                  style={{ color: "#3498db", textAlign: "center" }}
+                >
+                  Скачать счет
+                </a>
+              ) : (
+                <a
+                  className="btn btn-block btn-success"
+                  onClick={() => onDownload("invoice")}
+                >
+                  <i className="fas fa-download"></i> Получить счет
+                </a>
+              )}
+              {act !== "" ? (
+                <a
+                  href={act}
+                  className="download"
+                  target="_blank"
+                  style={{ color: "#3498db", textAlign: "center" }}
+                >
+                  Скачать акт по уcлугам
+                </a>
+              ) : (
+                <a
+                  className="btn btn-block btn-success"
+                  onClick={() => onDownload("reconciliation")}
+                >
+                  <i className="fas fa-download"></i> Получить акт по уcлугам
+                </a>
+              )}
+            </Fragment>
+            // <>
+            //   <a
+            //     className="btn btn-block btn-success"
+            //     onClick={() => openInNewTab("invoice")}
+            //   >
+            //     <i className="fas fa-download"></i> Скачать счет
+            //   </a>
+            //   <a
+            //     className="btn btn-block btn-success"
+            //     onClick={() => openInNewTab("reconciliation")}
+            //   >
+            //     <i className="fas fa-download"></i> Скачать акт по уcлугам
+            //   </a>
+            // </>
           )}
           {(!second || first) && (
             <a className="btn btn-block btn-success" onClick={onAgree}>
