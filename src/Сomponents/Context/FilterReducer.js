@@ -23,6 +23,7 @@ import {
   SET_FINE_TYPE,
   GET_FILES,
   GET_STATS,
+  GET_ORDERS
   // REFRESH_LOGS
 } from "./types";
 
@@ -165,6 +166,11 @@ export default (state, action) => {
       return {
         ...state,
         files: action.payload,
+      };
+    case GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
       };
     default:
       return state;

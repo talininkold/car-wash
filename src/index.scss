@@ -31,7 +31,7 @@ nav {
     #menu {
       display: flex;
       justify-content: space-around;
-      align-items: center;
+      align-items: flex-start;
       width: 700px;
       #nav-login {
         width: 100px;
@@ -53,19 +53,28 @@ nav {
       list-style: none;
       display: flex;
       flex-direction: row;
+      justify-content: center;
       padding: 0;
       // margin-right: 50px;
+      li {
+        max-width: fit-content;
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+          background: $hover-color;
+          color: #000;
+        }
+      }
+    }
+    p {
+      padding-top: 10px;
     }
     a {
       display: inline-block;
+      height: 100%;
       padding: 10px;
       text-decoration: none;
       color: $light-color;
-      cursor: pointer;
-      &:hover {
-        background: $hover-color;
-        color: #000;
-      }
     }
     p {
       color: #ecf0f1;
@@ -357,13 +366,18 @@ form.filters {
         margin: 5px auto;
       }
 
-      ul {
+      + ul {
         margin: 0;
-        padding: 5px;
         list-style: none;
         display: flex;
         flex-direction: row;
         margin-right: 60px;
+        li {
+          padding: 5px;
+        }
+      }
+      p {
+        padding-top: 15px;
       }
       a {
         display: block;
@@ -402,12 +416,18 @@ form.filters {
     width: 100%;
 
     div.container {
-      width: 370px;
+      width: 450px;
       padding: 0;
 
       #menu {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: auto;
+
+        p {
+          padding-top: 0;
+        }
       }
 
       ul {

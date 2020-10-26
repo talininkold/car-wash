@@ -49,6 +49,9 @@ const Navbar = () => {
                   <li>
                     <Link to="collation">Сверка</Link>
                   </li>
+                  <li>
+                    <Link to="orders_delivery">Заказы на доставку</Link>
+                  </li>
                 </Fragment>
               ) : (
                 <Fragment>
@@ -69,16 +72,20 @@ const Navbar = () => {
           )}
           {user === "washing" && <p id="nav-login">{login}</p>}
           {isAuthenticated && (
-            <a
-              type="button"
-              href=""
-              onClick={() => {
-                authContext.logOut();
-                // filterContext.clearAll()
-              }}
-            >
-              Выйти
-            </a>
+            <ul>
+              <li>
+                <a
+                  type="button"
+                  href=""
+                  onClick={() => {
+                    authContext.logOut();
+                    // filterContext.clearAll()
+                  }}
+                >
+                  Выйти
+                </a>
+              </li>
+            </ul>
           )}
         </div>
       </div>
