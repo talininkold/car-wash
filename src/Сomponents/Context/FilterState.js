@@ -26,7 +26,6 @@ import {
   SET_FINE_TYPE,
   GET_FILES,
   GET_STATS,
-  GET_ORDERS
 } from "../Context/types";
 
 const FilterState = (props) => {
@@ -51,7 +50,6 @@ const FilterState = (props) => {
     cards: [],
     files: [],
     stat: null,
-    orders: []
   };
 
   const [state, dispatch] = useReducer(FilterReducer, initialState);
@@ -273,16 +271,6 @@ const FilterState = (props) => {
     setLoading(false);
   };
 
-  const getOrders = async () => {
-    setLoading(true);
-    const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbzXebhTNiUhnUgjXLkevAlwVlN6_0pmb-xOxzyB-g3pR8qj_0A/exec?orderList"
-    );
-    const data = await res.json();
-    dispatch({ type: GET_ORDERS, payload: data.data });
-    setLoading(false);
-  };
-
   return (
     <FilterContext.Provider
       value={{
@@ -307,7 +295,6 @@ const FilterState = (props) => {
         cards: state.cards,
         files: state.files,
         stat: state.stat,
-        orders: state.orders,
         setLoading,
         onTicketFilter,
         clearFilter,
@@ -330,7 +317,6 @@ const FilterState = (props) => {
         resetFines,
         getCollations,
         getFiles,
-        getOrders
       }}
     >
       {props.children}

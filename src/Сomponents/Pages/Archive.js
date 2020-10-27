@@ -48,13 +48,12 @@ const Archive = () => {
     setDate("date2", "");
   };
   const onDownload = () => {
-    const title = `${date1} - ${date2}`
     const wb = XLSX.utils.book_new();
     wb.Props = {
       Title: "Archive",
       Author: "washing",
     };
-    wb.SheetNames.push(title);
+    wb.SheetNames.push("Test Sheet");
     function forExcel(arr) {
       const arrCopy = JSON.parse(JSON.stringify(arr));
       for (let i = 0; i < arrCopy.length; i++) {
@@ -74,7 +73,7 @@ const Archive = () => {
 
     const ws_data = x;
     const ws = XLSX.utils.aoa_to_sheet(ws_data);
-    wb.Sheets[title] = ws;
+    wb.Sheets["Test Sheet"] = ws;
     const wbout = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
     function s2ab(s) {
       var buf = new ArrayBuffer(s.length);
@@ -86,7 +85,7 @@ const Archive = () => {
     }
     saveAs(
       new Blob([s2ab(wbout)], { type: "application/octet-stream" }),
-      title + ".xlsx"
+      "test.xlsx"
     );
   };
 
