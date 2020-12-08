@@ -529,3 +529,77 @@ form.filters {
     }
   }
 }
+
+#main-page {
+  h4 {
+    margin-bottom: 1rem;
+  }
+  #top {
+    border-bottom: 2px dashed $secondary-color;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    h5 {
+      margin-top: 0;
+    }
+    > div {
+      padding: 0.5rem 0 1rem 0;
+    }
+    table {
+      thead {
+        background: none;
+      }
+      td,
+      th {
+        border: none;
+        i {
+          font-size: 1.5rem;
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            transform: scale(1.2) rotate(360deg);
+          }
+        }
+      }
+    }
+    .list-group {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      &-item {
+        font-size: 0.7rem;
+        line-height: 1rem;
+        i {
+          font-size: 1rem;
+          margin-right: 0.7rem;
+          margin-bottom: 0.15rem;
+          color: $main-color;
+          transition: all 0.4s ease-in-out;
+        }
+        &:hover {
+          background-color: $light-color;
+          i {
+            transform: rotate(50deg);
+          }
+        }
+      }
+    }
+  }
+  #bottom {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    grid-gap: 1rem;
+    > div {
+      padding: 1rem 0 0.5rem 0;
+    }
+  }
+  @media (max-width: 756px) {
+    #top {
+      grid-template-columns: 1fr;
+    }
+    #bottom {
+      grid-template-columns: 1fr;
+      iframe {
+        width: 400px;
+      }
+    }
+  }
+}

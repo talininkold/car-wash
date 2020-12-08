@@ -35,7 +35,10 @@ const Navbar = () => {
               {user === "washing" ? (
                 <Fragment>
                   <li>
-                    <Link to="main">Главная</Link>
+                    <Link to="/">Главная</Link>
+                  </li>
+                  <li>
+                    <Link to="materials">Материалы</Link>
                   </li>
                   <li>
                     <Link to="archive">История операций</Link>

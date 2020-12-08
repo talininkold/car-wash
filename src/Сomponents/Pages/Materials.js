@@ -3,7 +3,7 @@ import FilterContext from "../Context/filterContext";
 // import AuthContext from "../Context/authContext/authContext";
 import Spinner from "../Layout/Spinner2";
 
-const Main = () => {
+const Materials = () => {
   const { loading, getFiles, files } = useContext(FilterContext);
   // const { login, key } = useContext(AuthContext);
 
@@ -21,7 +21,7 @@ const Main = () => {
   return (
     <div className="container">
       <h4>
-        Главная{" "}
+        Материалы для партнеров{" "}
         {!loading && (
           <i className="fas fa-sync-alt refresh-logs" onClick={refresh}></i>
         )}
@@ -46,4 +46,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Materials;
