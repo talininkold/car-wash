@@ -74,6 +74,22 @@ nav {
   }
 }
 
+#goTelegram {
+  background-color: $success-color;
+  opacity: 1;
+  width: 250px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  i {
+    margin: 5px 5px 5px 0;
+  }
+}
+
 // Spinner linear
 .loader,
 .loader:before,
@@ -543,7 +559,7 @@ form.filters {
       margin-top: 0;
     }
     > div {
-      padding: 0.5rem 0 1rem 0;
+      padding: 1rem;
     }
     table {
       thead {
@@ -588,7 +604,7 @@ form.filters {
     grid-template-columns: 5fr 3fr;
     grid-gap: 1rem;
     > div {
-      padding: 1rem 1rem 0 1rem;
+      padding: 1rem;
     }
     .card {
       margin-bottom: 1rem;

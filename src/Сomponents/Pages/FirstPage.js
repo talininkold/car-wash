@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext, Fragment} from 'react'
 import AuthContext from '../Context/authContext/authContext'
+import FetchContext from '../Context/fetchContext/fetchContext'
 import Login from '../Layout/Login'
 import { Redirect } from 'react-router-dom'
 import News from '../Layout/News'
@@ -11,13 +12,12 @@ const FirstPage = () => {
   const [loading, setLoading] = useState(false)
   const [loadingPartners, setLoadingPartners] = useState(false)
   const [loadingNotif, setLoadingNotif] = useState(false)
-  const [loadingNews, setLoadingNews] = useState(false)
 
   const [partners, setPartners] = useState([])
   const [notif, setNotif] = useState([])
-  const [news, setNews] = useState([])
 
-  const {isAuthenticated, user, login} = useContext(AuthContext)
+  const {isAuthenticated, login} = useContext(AuthContext)
+  const { getNews } = useContext(FetchContext)
 
   const getPartners = async () => {
     setLoadingPartners(true)
@@ -41,7 +41,9 @@ const FirstPage = () => {
   }, [])
 
   const refresh = () => {
-    console.log('refreshed')
+    getNews()
+    getPartners()
+    getNotifications()
   }
 
   const Partners = () => {
@@ -88,11 +90,11 @@ const FirstPage = () => {
           <div id="top">
             <div>
               <h5>Вы работаете с:</h5>
-              {partners.length === 0 ? <Spinner animation="grow" /> : <Partners />}
+              {loadingPartners ? <Spinner animation="grow" /> : <Partners />}
             </div>
             <div>
             <h5>Уведомления:</h5>
-              {notif.length === 0 ? <Spinner animation="grow" /> : <Notifications />}
+              {loadingNotif ? <Spinner animation="grow" /> : <Notifications />}
             </div>            
           </div>
           <div id="bottom">

@@ -27,6 +27,7 @@ const Navbar = () => {
   }, [localStorage.user, localStorage.param, localStorage.login, response]);
 
   return (
+    <>
     <nav>
       <div className="container">
         <div className="logo">
@@ -90,6 +91,13 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    <a href="https://t.me/CF_PartnersBot" target="_blank">
+      <div id="goTelegram">
+        <i class="fab fa-telegram fa-2x"/>
+        <span>Написать в поддержку</span>
+      </div>
+    </a>
+    </>
   );
 };
 
