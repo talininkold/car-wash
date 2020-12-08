@@ -54,7 +54,7 @@ const FirstPage = () => {
         </thead>
         <tbody>
           <tr>
-            {partners.map(p => <td key={p.name}>{p.status ? <i class="far fa-check-circle" style={{ color: '#a7d08c'}}/> : <i class="far fa-circle" style={{ color: '#f5b041'}}/>}</td>)}
+            {partners.map(p => <td key={p.name}>{p.status ? <i className="far fa-check-circle" style={{ color: '#a7d08c'}}/> : <i className="far fa-circle" style={{ color: '#f5b041'}}/>}</td>)}
           </tr>
         </tbody>
       </table>
@@ -66,7 +66,7 @@ const FirstPage = () => {
       <ListGroup >
         {notif.map((n, ind) => 
           <ListGroup.Item key={ind}>
-            <i class="far fa-bell" /> {n.text}
+            <i className="far fa-bell" /> {n.text}
           </ListGroup.Item>
         )}
       </ListGroup>
@@ -98,7 +98,7 @@ const FirstPage = () => {
           <div id="bottom">
             <div><News /></div>
             <div>
-                <iframe frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async src="https://tgwidget.com/channel/v2.0/?id=5fc529aa83ba8883348b4569"></iframe>
+                <iframe frameBorder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async src="https://tgwidget.com/channel/v2.0/?id=5fc529aa83ba8883348b4569"></iframe>
             </div>             
           </div>
         </div>

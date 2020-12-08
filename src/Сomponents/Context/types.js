@@ -33,3 +33,7 @@ export const REMOVE_ALERT = "REMOVE_ALERT";
 export const SET_USER = "SET_USER";
 export const SET_KEY = "SET_KEY";
 export const SET_LOGIN = "SET_LOGIN";
+
+// fetch context
+export const SET_FETCH_LOADING = "SET_FETCH_LOADING";
+export const GET_NEWS = "GET_NEWS";

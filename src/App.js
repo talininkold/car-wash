@@ -16,61 +16,65 @@ import Fines from "./Сomponents/Pages/Fines";
 import Collation from "./Сomponents/Pages/Collation";
 import Feedback from "./Сomponents/Pages/Feedback";
 import Materials from "./Сomponents/Pages/Materials";
+import FetchState from "./Сomponents/Context/fetchContext/FetchState";
 
 function App() {
   return (
     <AuthState>
       <FilterState>
-        <Router>
-          <div className="App">
-            <Navbar />
-            <Alert />
-            <div>
-              <Switch>
-                <PrivateRoute exact path="/search" component={Search} />
-                <PrivateRoute exact path="/image" component={Image} />
-                <PrivateRoute exact path="/edit" component={Edit} />
-                <PrivateRouteLogs
-                  exact
-                  path="/logs"
-                  component={Logs}
-                  type="admin"
-                />
-                <PrivateRouteLogs
-                  exact
-                  path="/archive"
-                  component={Archive}
-                  type="washing"
-                />
-                <PrivateRouteLogs
-                  exact
-                  path="/fines"
-                  component={Fines}
-                  type="washing"
-                />
-                <PrivateRouteLogs
-                  exact
-                  path="/collation"
-                  component={Collation}
-                  type="washing"
-                />
-                <PrivateRouteLogs
-                  exact
-                  path="/feedback"
-                  component={Feedback}
-                  type="washing"
-                />
-                <PrivateRouteLogs
-                  exact
-                  path="/materials"
-                  component={Materials}
-                  type="washing"
-                />
-                <Route exact path="/" component={FirstPage} />
-              </Switch>
+        <FetchState>
+          <Router>
+            <div className="App">
+              <Navbar />
+              <Alert />
+              <div>
+                <Switch>
+                  <PrivateRoute exact path="/search" component={Search} />
+                  <PrivateRoute exact path="/image" component={Image} />
+                  <PrivateRoute exact path="/edit" component={Edit} />
+                  <PrivateRouteLogs
+                    exact
+                    path="/logs"
+                    component={Logs}
+                    type="admin"
+                  />
+                  <PrivateRouteLogs
+                    exact
+                    path="/archive"
+                    component={Archive}
+                    type="washing"
+                  />
+                  <PrivateRouteLogs
+                    exact
+                    path="/fines"
+                    component={Fines}
+                    type="washing"
+                  />
+                  <PrivateRouteLogs
+                    exact
+                    path="/collation"
+                    component={Collation}
+                    type="washing"
+                  />
+                  <PrivateRouteLogs
+                    exact
+                    path="/feedback"
+                    component={Feedback}
+                    type="washing"
+                  />
+                  <PrivateRouteLogs
+                    exact
+                    path="/materials"
+                    component={Materials}
+                    type="washing"
+                  />
+                  <Route exact path="/" component={FirstPage} />
+                </Switch>
+              </div>
             </div>
-          </div>
-        </Router>
+          </Router>
+
+        </FetchState>
       </FilterState>
     </AuthState>
   );

@@ -3,18 +3,22 @@ import { Link } from "react-router-dom";
 // import FilterContext from '../Context/filterContext'
 import AuthContext from "../Context/authContext/authContext";
 import FilterContext from "../Context/filterContext";
+import FetchContext from '../Context/fetchContext/fetchContext'
 
 const Navbar = () => {
   // const filterContext = useContext(FilterContext)
   const authContext = useContext(AuthContext);
   const filterContext = useContext(FilterContext);
+  const fetchContext = useContext(FetchContext);
 
   const { isAuthenticated, user, login } = authContext;
   const { response } = filterContext;
+  const { getNews } = fetchContext;
 
   useEffect(() => {
     if (localStorage.login) {
       authContext.loadUser();
+      getNews()
     }
     if (response !== null) {
       filterContext.clearFilter();

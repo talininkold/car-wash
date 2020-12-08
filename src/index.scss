@@ -588,7 +588,20 @@ form.filters {
     grid-template-columns: 5fr 3fr;
     grid-gap: 1rem;
     > div {
-      padding: 1rem 0 0.5rem 0;
+      padding: 1rem 1rem 0 1rem;
+    }
+    .card {
+      margin-bottom: 1rem;
+      border-radius: 0.25rem;
+      box-shadow: none;
+      border: 1px solid $secondary-color;
+      font-size: 0.8rem;
+      &-header {
+        background: $light-color;
+        &:hover {
+          background-color: $secondary-color;
+        }
+      }
     }
   }
   @media (max-width: 756px) {
