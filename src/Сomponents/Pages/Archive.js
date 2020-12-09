@@ -10,6 +10,8 @@ const Archive = () => {
   const {
     archive,
     getArchive,
+    stat,
+    getStat,
     setArchiveType,
     clearArchive,
     loading,
@@ -20,26 +22,15 @@ const Archive = () => {
   } = useContext(FilterContext);
   const { login, key } = useContext(AuthContext);
 
-  const getArchiveData = (e) => {
-    e.preventDefault();
-    document.getElementById("show-history").style.display = "none";
+  const getArchiveData = (archiveType) => {
     const date1U = new Date(date1);
     const date2U = new Date(date2);
-    console.log(date1);
-    console.log(date1U);
-    console.log(date1U.getTime());
-    console.log(date2U.getTime());
-    const firstDate = date1U.getTime() <= date2U.getTime() ? date1 : date2;
-    const secondDate = date1U.getTime() <= date2U.getTime() ? date2 : date1;
-    console.log("first date", firstDate, "second date", secondDate);
     getArchive(
       archiveType,
       login,
       key,
       date1U.getTime(),
       date2U.getTime(),
-      firstDate,
-      secondDate
     );
   };
   const reset = () => {
@@ -89,11 +80,23 @@ const Archive = () => {
     );
   };
 
+  const getStatData = (e) => {
+    e.preventDefault()
+    if(document.getElementById("show-history")) {
+      document.getElementById("show-history").style.display = "none";
+    }
+    const date1U = new Date(date1);
+    const date2U = new Date(date2);
+    const firstDate = date1U.getTime() <= date2U.getTime() ? date1 : date2;
+    const secondDate = date1U.getTime() <= date2U.getTime() ? date2 : date1;
+    getStat( login, firstDate, secondDate );
+  }
+
   return (
     <div className="container">
       <h4>
         История операций{" "}
-        {archive !== null &&
+        {stat !== null &&
           (archiveType === "archive" ? "такси и физ. лица" : "каршеринга")}
         {/* {archive !== null && archive !== "Error" && (
           <i
@@ -103,36 +106,26 @@ const Archive = () => {
           ></i>
         )} */}
       </h4>
-      {archive === null && (
-        <select
-          className="browser-default"
-          value={archiveType}
-          onChange={(e) => setArchiveType(e.target.value)}
-        >
-          <option value="archive">такси и физ. лица</option>
-          <option value="archiveСarsharing">каршеринг</option>
-        </select>
-      )}
-      {archive !== null && (
+      {stat !== null && (
         <div id="about">
           <h5>
             {archive !== "Error"
               ? `Показана история за период с ${date1.replace(
-                  "T",
-                  "  "
+                "T",
+                "  "
                 )} по ${date2.replace("T", "  ")} `
-              : "Cбросить"}
+                : "Cбросить"}
             <i
               className="fas fa-times fa-2x"
               id="reset-logs"
               onClick={reset}
-            ></i>
+              ></i>
           </h5>
         </div>
       )}
-      {archive === null && (
+      {stat === null && (
         <div id="archive">
-          <form onSubmit={getArchiveData}>
+          <form onSubmit={getStatData}>
             <label htmlFor="date1">Укажите начальную дату</label>
             <input
               id="date1"
@@ -140,7 +133,7 @@ const Archive = () => {
               required
               onChange={(e) => setDate("date1", e.target.value)}
               value={date1}
-            />
+              />
             <label htmlFor="date2">Укажите конечную дату</label>
             <input
               id="date2"
@@ -148,19 +141,33 @@ const Archive = () => {
               required
               onChange={(e) => setDate("date2", e.target.value)}
               value={date2}
-            />
+              />
             <button
               className="btn btn-main"
               id="show-history"
               type="submit"
               style={{ marginBottom: "10px" }}
-            >
+              >
               Показать
             </button>
           </form>
         </div>
       )}
       <StatTable onDownload={onDownload} />
+      {!loading && stat !== null && (
+        <select
+          className="browser-default"
+          value={archiveType}
+          onChange={(e) => {
+            setArchiveType(e.target.value); 
+            getArchiveData(e.target.value)
+          }}
+        >
+          <option value="" disabled>Выберите вариант</option>
+          <option value="archive">такси и физ. лица</option>
+          <option value="archiveСarsharing">каршеринг</option>
+        </select>
+      )}
       {loading ? (
         <Spinner />
       ) : (

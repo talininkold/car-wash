@@ -30,10 +30,12 @@ const Navbar = () => {
     <>
     <nav>
       <div className="container">
-        <div className="logo">
-          <i className="fas fa-car fa-2x"></i>
-          <h3>{user === "washing" ? "Мойка - Мойка" : "АДМИНКА ДЛЯ МОЙКИ"}</h3>
-        </div>
+        <Link to="/" id="logo">
+          <div className="logo">
+            <i className="fas fa-car fa-2x"></i>
+            <h3>{user === "washing" ? "Мойка - Мойка" : "АДМИНКА ДЛЯ МОЙКИ"}</h3>
+          </div>
+        </Link>
         <div id="menu">
           {isAuthenticated && (
             <ul>

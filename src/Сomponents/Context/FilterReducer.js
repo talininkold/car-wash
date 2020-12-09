@@ -132,6 +132,7 @@ export default (state, action) => {
         ...state,
         archive: null,
         stat: null,
+        archiveType: ""
       };
     case SET_FINE_TYPE:
       return {

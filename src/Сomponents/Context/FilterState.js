@@ -41,7 +41,7 @@ const FilterState = (props) => {
     logs: [],
     logsFiltered: null,
     archive: null,
-    archiveType: "archive",
+    archiveType: "",
     date1: "",
     date2: "",
     fines: [],
@@ -155,14 +155,27 @@ const FilterState = (props) => {
     dispatch({ type: RESET_FILTER });
   };
 
+  const getStat = async (login, firstDate, secondDate) => {
+    // stat request
+    dispatch({type: SET_LOADING, payload: true})
+    const stat = await fetch(
+      `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=historyStatistics&user=${login}&date1=${firstDate}&date2=${secondDate}`
+    );
+    const statData = await stat.json();
+    if (statData.status === "Error") {
+      dispatch({ type: GET_STATS, payload: statData.status });
+    } else {
+      dispatch({ type: GET_STATS, payload: statData.arr });
+    }
+    dispatch({type: SET_LOADING, payload: false})
+  }
+
   const getArchive = async (
     archiveType,
     login,
     key,
     d1,
     d2,
-    firstDate,
-    secondDate
   ) => {
     dispatch({ type: SET_LOADING, payload: true });
     const d2End = d2 + 86400000;
@@ -173,11 +186,6 @@ const FilterState = (props) => {
       }&date2=${d1 - d2End > 0 ? d1 : d2End}`
     );
     const data = await res.json();
-    // stat request
-    const stat = await fetch(
-      `https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=historyStatistics&user=${login}&date1=${firstDate}&date2=${secondDate}`
-    );
-    const statData = await stat.json();
     if (data.arr !== "Error") {
       data.arr.map((item) => {
         if (item[3] === null) {
@@ -188,19 +196,6 @@ const FilterState = (props) => {
           return item;
         }
       });
-    }
-    if (statData.status === "Error") {
-      dispatch({ type: GET_STATS, payload: statData.status });
-    } else {
-      // const newArr = [];
-      // const stat2 = statData.arr;
-      // if (stat2) {
-      //   for (let i = 0; i < stat2.length; i++) {
-      //     const el = stat2.splice(i, 3, 0);
-      //     newArr.push(el);
-      //   }
-      // }
-      dispatch({ type: GET_STATS, payload: statData.arr });
     }
     dispatch({ type: GET_ARCHIVE, payload: data.arr });
     console.log("archive is here");
@@ -309,6 +304,7 @@ const FilterState = (props) => {
         logsFilter,
         resetFilter,
         getArchive,
+        getStat,
         setArchiveType,
         clearArchive,
         setDate,
