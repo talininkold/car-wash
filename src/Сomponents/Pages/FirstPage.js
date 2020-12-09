@@ -31,7 +31,7 @@ const FirstPage = () => {
     setLoadingNotif(true)
     const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=notificationList&user=${login}`)
     const data = await res.json()
-    setNotif(data.partnersList)
+    setNotif(data.notificationList)
     setLoadingNotif(false)
   }
 
@@ -99,7 +99,7 @@ const FirstPage = () => {
           </div>
           <div id="bottom">
             <div><News /></div>
-            <div>
+            <div style={{paddingRight: '2rem'}}>
                 <iframe frameBorder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async src="https://tgwidget.com/channel/v2.0/?id=5fc529aa83ba8883348b4569"></iframe>
             </div>             
           </div>

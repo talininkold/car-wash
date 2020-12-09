@@ -56,6 +56,7 @@ const News = () => {
                 {currentNews.map((n, ind) => 
                     <Card key={ind}>
                         <Accordion.Toggle as={Card.Header} eventKey={ind+1}>
+                            <i className="far fa-plus-square fa-1x" style={{ color: '#3498db', marginRight: '5px'}}/>
                             {n.title}
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey={ind+1}>

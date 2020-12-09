@@ -93,7 +93,7 @@ const Navbar = () => {
     </nav>
     <a href="https://t.me/CF_PartnersBot" target="_blank">
       <div id="goTelegram">
-        <i class="fab fa-telegram fa-2x"/>
+        <i className="fab fa-telegram fa-2x"/>
         <span>Написать в поддержку</span>
       </div>
     </a>

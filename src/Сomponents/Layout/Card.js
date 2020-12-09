@@ -17,7 +17,8 @@ const Card = ({ headers, params, onLoading }) => {
   const [loading, setLoading] = useState(false);
 
   const leftColumn = headers.slice(3, headers.length);
-  const rightColumn = params.slice(3, params.length);
+  // const rightColumn = params.slice(3, params.length);
+  const rightColumn = ["2020-11-16", "2020-11-30", "9930", "9270 (10)", "96 (10)", "0 (20)", "660 (10)"," 2 (10)", "0 (0)", "1000 (0)", "0 (0)", "1000 (2)"," 1000 (2)", "2000 (2)", "", 0, "", ""]
   const date1 = rightColumn[0];
   const date2 = rightColumn[1];
   const payment = rightColumn[2];
@@ -29,6 +30,18 @@ const Card = ({ headers, params, onLoading }) => {
   const hideModal = () => {
     setModal(false);
   };
+
+  const numberFormatter = (array) => {
+    let tdNumbers = [3, 4, 5, 9, 10]
+    return array.map((item, index) => {
+      if(tdNumbers.includes(index)) {
+        const position = tdNumbers.indexOf(index)
+        tdNumbers.splice(position, 1)
+        return item.split(' ')
+      }
+      return item
+    });
+  }
 
   const onAgree = async () => {
     const promt = window.confirm("Cогласовать данную карточку?");
@@ -120,6 +133,11 @@ const Card = ({ headers, params, onLoading }) => {
     setLoading(false);
   };
 
+  console.log(rightColumn)
+  console.log(leftColumn)
+  const rightColumnFormatted = numberFormatter(rightColumn)
+  console.log('firmated', rightColumnFormatted)
+
   return (
     <div style={first ? redBg : grayBg}>
       <Modal show={modal} handleClose={hideModal}>
@@ -143,7 +161,7 @@ const Card = ({ headers, params, onLoading }) => {
                 <td>
                   {rightColumn[index] === null || rightColumn[index] === ""
                     ? "-"
-                    : rightColumn[index]}
+                    : typeof(rightColumnFormatted[index]) === 'object' ? <span>{rightColumnFormatted[index][0]}<span className="normal-text">{' ' + rightColumnFormatted[index][1]}</span></span> : rightColumnFormatted[index]}
                 </td>
               </tr>
               {index === 2 && <tr style={{ height: "0.7rem" }}></tr>}
