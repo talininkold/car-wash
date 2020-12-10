@@ -19,26 +19,34 @@ const FirstPage = () => {
   const {isAuthenticated, login} = useContext(AuthContext)
   const { getNews } = useContext(FetchContext)
 
-  const getPartners = async () => {
-    setLoadingPartners(true)
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=partnersList&user=${login}`)
-    const data = await res.json()
-    setPartners(data.partnersList)
-    setLoadingPartners(false)
+  const getPartners = async (mount) => {
+    if (mount) {
+      setLoadingPartners(true)
+      const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=partnersList&user=${login}`)
+      const data = await res.json()
+      setPartners(data.partnersList)
+      setLoadingPartners(false)
+    }
   }
 
-  const getNotifications = async () => {
-    setLoadingNotif(true)
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=notificationList&user=${login}`)
-    const data = await res.json()
-    setNotif(data.notificationList)
-    setLoadingNotif(false)
+  const getNotifications = async (mount) => {
+    if (mount) {
+      setLoadingNotif(true)
+      const res = await fetch(`https://script.google.com/macros/s/AKfycbxIqFt9DzdnB085apVHNbLC6jiPqClksLWhUK1PtpbyCdDsGLRz/exec?request=notificationList&user=${login}`)
+      const data = await res.json()
+      setNotif(data.notificationList)
+      setLoadingNotif(false)
+    }
   }
 
   useEffect(() => {
+    let mount = true;
     if (login) {
-      getPartners()
-      getNotifications()
+      getPartners(mount)
+      getNotifications(mount)
+    }
+    return function cleanup() {
+      mount = false
     }
   }, [login])
 
