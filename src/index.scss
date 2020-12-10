@@ -528,43 +528,58 @@ form.filters {
 #stat-table {
   max-width: 600px;
   min-width: 300px;
-  width: 60%;
+  width: 70%;
   margin-right: auto;
-  margin-left: 0;
-  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-bottom: 1rem;
   table {
-    text-align: left;
-    thead {
-      background: none !important;
-      padding-bottom: 10px;
-      th {
-        border: none;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-      }
-    }
+    // thead {
+    //   background: none !important;
+    //   padding-bottom: 10px;
+    //   th {
+    //     border: none;
+    //     padding-top: 0.5rem;
+    //     padding-bottom: 0.5rem;
+    //   }
+    // }
     tbody {
       td {
         border: none;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+        padding: 0.2rem 1rem;
       }
-      tr:nth-child(1) {
-        font-weight: bold;
-        td {
-          padding-bottom: 1rem;
+      tr {
+        td:first-child {
+          text-align: right;
+        }
+        &:nth-child(23),
+        &:nth-child(24) {
+          td:first-child {
+            text-align: left !important;
+            font-style: italic;
+          }
         }
       }
-      tr:nth-child(2) {
+      tr:nth-child(1) {
         background-color: $main-blue-color;
-        font-weight: bold;
       }
-      tr:nth-child(4),
-      tr:nth-child(10),
-      tr:nth-child(12),
-      tr:nth-child(14) {
+      tr:nth-child(2),
+      tr:nth-child(13),
+      tr:nth-child(17),
+      tr:nth-child(20) {
         background-color: $light-blue-color;
+      }
+      tr:nth-child(1) td,
+      tr:nth-child(2) td,
+      tr:nth-child(3) td,
+      tr:nth-child(9) td,
+      tr:nth-child(13) td,
+      tr:nth-child(17) td,
+      tr:nth-child(20) td {
+        font-size: 0.9rem !important;
         font-weight: bold;
+        text-align: left;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
       }
     }
   }

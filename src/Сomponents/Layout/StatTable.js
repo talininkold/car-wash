@@ -42,11 +42,11 @@ const StatTable = ({ onDownload }) => {
           <>
             <table>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td>Период</td>
                   <td>{date1}</td>
                   <td>{date2}</td>
-                </tr>
+                </tr> */}
                 {stat.map((item, i) => (
                   <Fragment key={i}>
                     <tr>
@@ -54,7 +54,7 @@ const StatTable = ({ onDownload }) => {
                         <td key={i}>{td === null ? "-" : td}</td>
                       ))}
                     </tr>
-                    {i === 0 && <tr style={{ height: "1.5rem" }}></tr>}
+                    {/* {i === 0 && <tr style={{ height: "1.5rem" }}></tr>} */}
                   </Fragment>
                 ))}
               </tbody>

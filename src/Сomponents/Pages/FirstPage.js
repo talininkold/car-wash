@@ -36,9 +36,11 @@ const FirstPage = () => {
   }
 
   useEffect(() => {
-    getPartners()
-    getNotifications()
-  }, [])
+    if (login) {
+      getPartners()
+      getNotifications()
+    }
+  }, [login])
 
   const refresh = () => {
     getNews()

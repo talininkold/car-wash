@@ -17,8 +17,8 @@ const Card = ({ headers, params, onLoading }) => {
   const [loading, setLoading] = useState(false);
 
   const leftColumn = headers.slice(3, headers.length);
-  // const rightColumn = params.slice(3, params.length);
-  const rightColumn = ["2020-11-16", "2020-11-30", "9930", "9270 (10)", "96 (10)", "0 (20)", "660 (10)"," 2 (10)", "0 (0)", "1000 (0)", "0 (0)", "1000 (2)"," 1000 (2)", "2000 (2)", "", 0, "", ""]
+  const rightColumn = params.slice(3, params.length);
+  // const rightColumn = ["2020-11-16", "2020-11-30", "9930", "9270 (10)", "96 (10)", "0 (20)", "660 (10)"," 2 (10)", "0 (0)", "1000 (0)", "0 (0)", "1000 (2)"," 1000 (2)", "2000 (2)", "", 0, "", ""]
   const date1 = rightColumn[0];
   const date2 = rightColumn[1];
   const payment = rightColumn[2];
@@ -37,7 +37,7 @@ const Card = ({ headers, params, onLoading }) => {
       if(tdNumbers.includes(index)) {
         const position = tdNumbers.indexOf(index)
         tdNumbers.splice(position, 1)
-        return item.split(' ')
+        return typeof(item) === 'string' ? item.split(' ') : item
       }
       return item
     });
