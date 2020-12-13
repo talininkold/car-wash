@@ -10,6 +10,8 @@ const Card = ({ headers, params, onLoading }) => {
   const [reason, setReason] = useState("");
   const [act, setAct] = useState("");
   const [bill, setBill] = useState("");
+  const [act2, setAct2] = useState("");
+  const [bill2, setBill2] = useState("");
 
   const [first, setFirst] = useState(params[0]);
   const [second, setSecond] = useState(params[1]);
@@ -126,6 +128,8 @@ const Card = ({ headers, params, onLoading }) => {
 
       if (param === "reconciliation") setAct(data.url);
       if (param === "invoice") setBill(data.url);
+      if (param === "reconciliationNew") setAct2(data.url);
+      if (param === "invoiceNew") setBill2(data.url);
     } catch (error) {
       setAlert("Произошла ошибка", "danger");
     }
@@ -180,14 +184,14 @@ const Card = ({ headers, params, onLoading }) => {
                   target="_blank"
                   style={{ color: "#3498db", textAlign: "center" }}
                 >
-                  Скачать счет
+                  Скачать Счет (Мойка-Мойка, B2C)
                 </a>
               ) : (
                 <a
                   className="btn btn-block btn-success"
                   onClick={() => onDownload("invoice")}
                 >
-                  <i className="fas fa-download"></i> Получить счет
+                  <i className="fas fa-download"></i> Получить Счет (Мойка-Мойка, B2C)
                 </a>
               )}
               {act !== "" ? (
@@ -197,14 +201,48 @@ const Card = ({ headers, params, onLoading }) => {
                   target="_blank"
                   style={{ color: "#3498db", textAlign: "center" }}
                 >
-                  Скачать акт по уcлугам
+                  Скачать Акт (Мойка-Мойка, B2C)
                 </a>
               ) : (
                 <a
                   className="btn btn-block btn-success"
                   onClick={() => onDownload("reconciliation")}
                 >
-                  <i className="fas fa-download"></i> Получить акт по уcлугам
+                  <i className="fas fa-download"></i> Получить Акт (Мойка-Мойка, B2C)
+                </a>
+              )}
+              {bill2 !== "" ? (
+                <a
+                  href={bill2}
+                  className="download"
+                  target="_blank"
+                  style={{ color: "#3498db", textAlign: "center" }}
+                >
+                  Скачать счет (Карфикс, Каршеринг аренда)
+                </a>
+              ) : (
+                <a
+                  className="btn btn-block btn-success"
+                  onClick={() => onDownload("invoiceNew")}
+                >
+                  <i className="fas fa-download"></i> Получить счет (Карфикс, Каршеринг аренда)
+                </a>
+              )}
+              {act2 !== "" ? (
+                <a
+                  href={act2}
+                  className="download"
+                  target="_blank"
+                  style={{ color: "#3498db", textAlign: "center" }}
+                >
+                  Скачать акт (Карфикс, Каршеринг аренда)
+                </a>
+              ) : (
+                <a
+                  className="btn btn-block btn-success"
+                  onClick={() => onDownload("reconciliationNew")}
+                >
+                  <i className="fas fa-download"></i> Получить акт (Карфикс, Каршеринг аренда)
                 </a>
               )}
             </Fragment>
