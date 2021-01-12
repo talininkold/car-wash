@@ -21,7 +21,7 @@ const Materials = () => {
   return (
     <div className="container">
       <h4>
-        Материалы для партнеров{" "}
+        Полезные материалы{" "}
         {!loading && (
           <i className="fas fa-sync-alt refresh-logs" onClick={refresh}></i>
         )}

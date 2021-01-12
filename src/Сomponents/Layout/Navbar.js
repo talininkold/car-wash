@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 // import FilterContext from '../Context/filterContext'
 import AuthContext from "../Context/authContext/authContext";
 import FilterContext from "../Context/filterContext";
@@ -45,10 +47,10 @@ const Navbar = () => {
                     <Link to="/">Главная</Link>
                   </li>
                   <li>
-                    <Link to="materials">Материалы</Link>
+                    <Link to="materials">Полезные <br />материалы</Link>
                   </li>
                   <li>
-                    <Link to="archive">История операций</Link>
+                    <Link to="archive">История <br />операций</Link>
                   </li>
                   <li>
                     <Link to="fines">Штрафы</Link>
@@ -59,6 +61,29 @@ const Navbar = () => {
                   <li>
                     <Link to="collation">Сверка</Link>
                   </li>
+                  <DropdownButton
+                    as="li"
+                    menuAlign="right"
+                    id="nav-dropdown"
+                  >
+                    <Dropdown.Item eventKey="1" as="div"><Link to="feedback">Отзывы</Link></Dropdown.Item>
+                    <Dropdown.Item eventKey="2" as="div"><Link to="collation">Сверка</Link></Dropdown.Item>
+                    <Dropdown.Item eventKey="3" as="div">{user === "washing" && <span>{login}</span>}</Dropdown.Item>
+                    <Dropdown.Item eventKey="4" as="div">
+                      {isAuthenticated && (
+                        <a
+                          id="logout-button"
+                          href=""
+                          onClick={() => {
+                            authContext.logOut();
+                            // filterContext.clearAll()
+                          }}
+                        >
+                          Выйти
+                        </a>
+                      )}
+                    </Dropdown.Item>
+                  </DropdownButton>              
                 </Fragment>
               ) : (
                 <Fragment>
@@ -80,6 +105,7 @@ const Navbar = () => {
           {user === "washing" && <p id="nav-login">{login}</p>}
           {isAuthenticated && (
             <a
+              id="logout-btn"
               type="button"
               href=""
               onClick={() => {
@@ -87,7 +113,7 @@ const Navbar = () => {
                 // filterContext.clearAll()
               }}
             >
-              Выйти
+              <i className="fas fa-sign-out-alt"/> <span>Выйти</span>
             </a>
           )}
         </div>

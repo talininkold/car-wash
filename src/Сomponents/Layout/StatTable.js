@@ -47,16 +47,28 @@ const StatTable = ({ onDownload }) => {
                   <td>{date1}</td>
                   <td>{date2}</td>
                 </tr> */}
-                {stat.map((item, i) => (
+                {stat.map((item, i) => {
+                  let correctItem;
+                  if (typeof item === "object" ) {
+                    correctItem = item
+                  } else {
+                    if (typeof item === "string") {
+                      correctItem = item.split(',')
+                    } else {
+                      correctItem = ['error', 'error', 'error']
+                    }
+                  }
+                  return (
                   <Fragment key={i}>
                     <tr>
-                      {item.map((td, i) => (
+                      {correctItem.map((td, i) => (
                         <td key={i}>{td === null ? "-" : td}</td>
                       ))}
                     </tr>
                     {/* {i === 0 && <tr style={{ height: "1.5rem" }}></tr>} */}
                   </Fragment>
-                ))}
+                )}
+                )}
               </tbody>
             </table>
             {archive !== null && archive !== "Error" && (
