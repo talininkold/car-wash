@@ -184,14 +184,14 @@ const Card = ({ headers, params, onLoading }) => {
                   target="_blank"
                   style={{ color: "#3498db", textAlign: "center" }}
                 >
-                  Скачать Счет (Мойка-Мойка, B2C)
+                  Скачать Счет (Такси, частные лица)
                 </a>
               ) : (
                 <a
                   className="btn btn-block btn-success"
                   onClick={() => onDownload("invoice")}
                 >
-                  <i className="fas fa-download"></i> Получить Счет (Мойка-Мойка, B2C)
+                  <i className="fas fa-download"></i> Получить Счет (Такси, частные лица)
                 </a>
               )}
               {act !== "" ? (
@@ -208,7 +208,7 @@ const Card = ({ headers, params, onLoading }) => {
                   className="btn btn-block btn-success"
                   onClick={() => onDownload("reconciliation")}
                 >
-                  <i className="fas fa-download"></i> Получить Акт (Мойка-Мойка, B2C)
+                  <i className="fas fa-download"></i> Получить Акт (Такси, частные лица)
                 </a>
               )}
               {bill2 !== "" ? (
@@ -225,7 +225,7 @@ const Card = ({ headers, params, onLoading }) => {
                   className="btn btn-block btn-success"
                   onClick={() => onDownload("invoiceNew")}
                 >
-                  <i className="fas fa-download"></i> Получить счет (Карфикс, Каршеринг аренда)
+                  <i className="fas fa-download"></i> Получить счет (Карфикс. Аренда, каршеринг и корп. клиенты)
                 </a>
               )}
               {act2 !== "" ? (
@@ -235,14 +235,14 @@ const Card = ({ headers, params, onLoading }) => {
                   target="_blank"
                   style={{ color: "#3498db", textAlign: "center" }}
                 >
-                  Скачать акт (Карфикс, Каршеринг аренда)
+                  Скачать акт (Карфикс. Аренда, каршеринг и корп. клиенты)
                 </a>
               ) : (
                 <a
                   className="btn btn-block btn-success"
                   onClick={() => onDownload("reconciliationNew")}
                 >
-                  <i className="fas fa-download"></i> Получить акт (Карфикс, Каршеринг аренда)
+                  <i className="fas fa-download"></i> Получить акт (Карфикс. Аренда, каршеринг и корп. клиенты)
                 </a>
               )}
             </Fragment>
